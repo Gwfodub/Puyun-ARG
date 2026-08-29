@@ -1,8 +1,7 @@
-```javascript
 /* =========================================================
    浦云大学附属中学
    实习教师招聘调查问卷
-   Q1–Q14 完整版
+   Q1–Q14 稳定版
    ========================================================= */
 
 
@@ -84,6 +83,7 @@ const questions = [
 
     {
         title: "教育理念",
+
         type: "radio",
 
         question:
@@ -113,6 +113,7 @@ const questions = [
 
     {
         title: "教育理念",
+
         type: "radio",
 
         question:
@@ -225,6 +226,7 @@ const questions = [
 
     /* =====================================================
        Q11
+       学生档案
        ===================================================== */
 
     {
@@ -239,10 +241,8 @@ const questions = [
 
             {
                 id: "A",
-
                 name: "张睿阳",
-
-                rank: "第 3 名",
+                rank: "3",
 
                 scores: {
                     "语文": 96,
@@ -258,20 +258,17 @@ const questions = [
                 note:
                     "学习能力突出，自主学习能力强，近期仍表现出较大的成绩提升空间。",
 
-                score: 3,
+                status: "正常",
+                risk: "LOW",
 
-                secretStatus: "正常",
-
-                secretRisk: "LOW"
+                score: 3
             },
 
 
             {
                 id: "B",
-
                 name: "王语彤",
-
-                rank: "第 47 名",
+                rank: "47",
 
                 scores: {
                     "语文": 62,
@@ -287,20 +284,17 @@ const questions = [
                 note:
                     "学习态度较为稳定，但成绩提升速度缓慢。",
 
-                score: 2,
+                status: "观察",
+                risk: "MEDIUM",
 
-                secretStatus: "观察",
-
-                secretRisk: "MEDIUM"
+                score: 2
             },
 
 
             {
                 id: "C",
-
                 name: "李鑫怡",
-
-                rank: "第 82 名",
+                rank: "82",
 
                 scores: {
                     "语文": 91,
@@ -316,20 +310,17 @@ const questions = [
                 note:
                     "学生本人希望继续升学，并表示愿意投入更多时间改善理科成绩。",
 
-                score: 1,
+                status: "重点关注",
+                risk: "HIGH",
 
-                secretStatus: "异常",
-
-                secretRisk: "HIGH"
+                score: 1
             },
 
 
             {
                 id: "D",
-
                 name: "陈子轩",
-
-                rank: "第 118 名",
+                rank: "118",
 
                 scores: {
                     "语文": 51,
@@ -345,11 +336,10 @@ const questions = [
                 note:
                     "学习成绩持续下降，近期多次未完成作业。",
 
-                score: 0,
+                status: "学业预警",
+                risk: "CRITICAL",
 
-                secretStatus: "重点关注",
-
-                secretRisk: "CRITICAL"
+                score: 0
             }
 
         ]
@@ -443,23 +433,32 @@ const questions = [
 
 
 /* =========================================================
-   2. 当前问题
+   2. 当前状态
    ========================================================= */
 
 let currentQuestion = 0;
 
 
-/* =========================================================
-   3. 玩家答案
-   ========================================================= */
+/*
+   玩家答案
+
+   score = 总分
+*/
 
 const answers = {
     score: 0
 };
 
 
+/*
+   Q11 是否已经进入过机密档案页面
+*/
+
+let q11SecretShown = false;
+
+
 /* =========================================================
-   4. 获取 HTML 元素
+   3. 获取 HTML 元素
    ========================================================= */
 
 const welcomePage =
@@ -485,104 +484,160 @@ const questionContent =
 
 
 /* =========================================================
-   5. 创建“上一题”按钮
+   4. 安全检查
    ========================================================= */
 
-const previousButton =
-    document.createElement("button");
+if (
+    !welcomePage ||
+    !questionPage ||
+    !startButton ||
+    !nextButton ||
+    !questionNumber ||
+    !questionTitle ||
+    !questionContent
+) {
 
-previousButton.id =
-    "previousButton";
+    console.error(
+        "问卷页面 HTML 元素缺失，请检查 index.html。"
+    );
 
-previousButton.textContent =
-    "上一题";
-
-previousButton.style.display =
-    "none";
-
-nextButton.parentNode.insertBefore(
-    previousButton,
-    nextButton
-);
+}
 
 
 /* =========================================================
-   6. 开始问卷
+   5. 创建上一题按钮
    ========================================================= */
 
-startButton.addEventListener(
-    "click",
-    function() {
+let previousButton =
+    document.getElementById("previousButton");
 
-        welcomePage.style.display =
-            "none";
 
-        questionPage.style.display =
-            "block";
+if (!previousButton) {
 
-        currentQuestion = 0;
+    previousButton =
+        document.createElement("button");
 
-        showQuestion();
+    previousButton.id =
+        "previousButton";
 
-    }
-);
+    previousButton.textContent =
+        "上一题";
+
+    previousButton.type =
+        "button";
+
+    previousButton.style.display =
+        "none";
+
+    nextButton.parentNode.insertBefore(
+        previousButton,
+        nextButton
+    );
+
+}
 
 
 /* =========================================================
-   7. 显示问题
+   6. 清理临时效果
    ========================================================= */
 
-function showQuestion() {
-
-    const question =
-        questions[currentQuestion];
-
-
-    /* -----------------------------------------
-       每次进入普通题目时恢复正常页面
-       ----------------------------------------- */
+function clearEffects() {
 
     document.body.classList.remove(
         "secret-mode"
     );
 
 
-    /* -----------------------------------------
-       Q11 如果从上一题返回，
-       确保恢复正常
-       ----------------------------------------- */
-
-    if (
-        currentQuestion !== 10
-    ) {
-
-        document.body.classList.remove(
-            "secret-mode"
+    const flash =
+        document.getElementById(
+            "flashScreen"
         );
 
+    if (flash) {
+        flash.remove();
     }
 
 
-    /* -----------------------------------------
-       问题编号
-       ----------------------------------------- */
+    const message =
+        document.getElementById(
+            "temporaryMessage"
+        );
+
+    if (message) {
+        message.remove();
+    }
+
+
+    const secondMessage =
+        document.getElementById(
+            "secondTemporaryMessage"
+        );
+
+    if (secondMessage) {
+        secondMessage.remove();
+    }
+
+}
+
+
+/* =========================================================
+   7. 开始问卷
+   ========================================================= */
+
+if (startButton) {
+
+    startButton.addEventListener(
+        "click",
+        function () {
+
+            welcomePage.style.display =
+                "none";
+
+            questionPage.style.display =
+                "block";
+
+            currentQuestion = 0;
+
+            showQuestion();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   8. 显示问题
+   ========================================================= */
+
+function showQuestion() {
+
+    clearEffects();
+
+
+    const question =
+        questions[currentQuestion];
+
+
+    if (!question) {
+        return;
+    }
+
+
+    /* 问题编号 */
 
     questionNumber.textContent =
         String(currentQuestion + 1)
         .padStart(2, "0");
 
 
-    /* -----------------------------------------
-       问题标题
-       ----------------------------------------- */
+    /* 问题标题 */
 
     questionTitle.textContent =
         question.title;
 
 
-    /* -----------------------------------------
-       清空问题内容
-       ----------------------------------------- */
+    /* 清空 */
 
     questionContent.innerHTML = "";
 
@@ -648,20 +703,20 @@ function showQuestion() {
         question.type === "radio"
     ) {
 
-        const questionText =
+        const paragraph =
             document.createElement("p");
 
-        questionText.textContent =
+        paragraph.textContent =
             question.question;
 
 
         questionContent.appendChild(
-            questionText
+            paragraph
         );
 
 
         question.options.forEach(
-            function(optionText) {
+            function (optionText) {
 
                 const label =
                     document.createElement("label");
@@ -698,6 +753,7 @@ function showQuestion() {
                     radio
                 );
 
+
                 label.appendChild(
                     document.createTextNode(
                         optionText
@@ -716,14 +772,14 @@ function showQuestion() {
 
 
     /* =====================================================
-       Q11 正常学生档案
+       Q11 学生档案
        ===================================================== */
 
     if (
         question.type === "student"
     ) {
 
-        showNormalStudentFiles(
+        renderStudentQuestion(
             question
         );
 
@@ -760,8 +816,8 @@ function showQuestion() {
 
 
     if (
-        currentQuestion
-        === questions.length - 1
+        currentQuestion ===
+        questions.length - 1
     ) {
 
         nextButton.textContent =
@@ -785,35 +841,7 @@ function showQuestion() {
         currentQuestion === 7
     ) {
 
-        const paragraph =
-            questionContent.querySelector(
-                "p"
-            );
-
-
-        if (paragraph) {
-
-            paragraph.textContent =
-                question.distortedQuestion;
-
-
-            setTimeout(
-                function() {
-
-                    if (
-                        currentQuestion === 7
-                    ) {
-
-                        paragraph.textContent =
-                            question.question;
-
-                    }
-
-                },
-                3000
-            );
-
-        }
+        playQ8Distortion();
 
     }
 
@@ -821,37 +849,37 @@ function showQuestion() {
 
 
 /* =========================================================
-   8. 正常 Q11 学生档案
+   9. Q11 正常学生卡片
    ========================================================= */
 
-function showNormalStudentFiles(
+function renderStudentQuestion(
     question
 ) {
 
-    const questionText =
+    const paragraph =
         document.createElement("p");
 
-    questionText.className =
+    paragraph.className =
         "student-question";
 
-    questionText.textContent =
+    paragraph.textContent =
         question.question;
 
 
     questionContent.appendChild(
-        questionText
+        paragraph
     );
 
 
-    const studentGrid =
+    const grid =
         document.createElement("div");
 
-    studentGrid.className =
+    grid.className =
         "student-grid";
 
 
     question.students.forEach(
-        function(student) {
+        function (student) {
 
             const card =
                 document.createElement("label");
@@ -895,33 +923,29 @@ function showNormalStudentFiles(
                 "student-header";
 
 
-            const studentID =
+            const id =
                 document.createElement("span");
 
-            studentID.className =
+            id.className =
                 "student-id";
 
-            studentID.textContent =
+            id.textContent =
                 student.id;
 
 
-            const studentName =
+            const name =
                 document.createElement("span");
 
-            studentName.className =
+            name.className =
                 "student-name";
 
-            studentName.textContent =
+            name.textContent =
                 student.name;
 
 
-            header.appendChild(
-                studentID
-            );
+            header.appendChild(id);
 
-            header.appendChild(
-                studentName
-            );
+            header.appendChild(name);
 
 
             const rank =
@@ -945,7 +969,7 @@ function showNormalStudentFiles(
             Object.entries(
                 student.scores
             ).forEach(
-                function(
+                function (
                     [subject, score]
                 ) {
 
@@ -994,27 +1018,21 @@ function showNormalStudentFiles(
 
 
             const summary =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
             summary.className =
                 "student-section";
 
 
             const summaryTitle =
-                document.createElement(
-                    "strong"
-                );
+                document.createElement("strong");
 
             summaryTitle.textContent =
                 "AI学情总结";
 
 
             const summaryText =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
             summaryText.textContent =
                 student.summary;
@@ -1030,27 +1048,21 @@ function showNormalStudentFiles(
 
 
             const note =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
             note.className =
                 "student-section";
 
 
             const noteTitle =
-                document.createElement(
-                    "strong"
-                );
+                document.createElement("strong");
 
             noteTitle.textContent =
                 "教师备注";
 
 
             const noteText =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
             noteText.textContent =
                 student.note;
@@ -1066,9 +1078,7 @@ function showNormalStudentFiles(
 
 
             const selectText =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
             selectText.className =
                 "student-select";
@@ -1108,14 +1118,16 @@ function showNormalStudentFiles(
 
             radio.addEventListener(
                 "change",
-                function() {
+                function () {
 
                     document
                         .querySelectorAll(
                             ".student-card"
                         )
                         .forEach(
-                            function(otherCard) {
+                            function (
+                                otherCard
+                            ) {
 
                                 otherCard.classList.remove(
                                     "selected"
@@ -1133,7 +1145,7 @@ function showNormalStudentFiles(
             );
 
 
-            studentGrid.appendChild(
+            grid.appendChild(
                 card
             );
 
@@ -1142,93 +1154,73 @@ function showNormalStudentFiles(
 
 
     questionContent.appendChild(
-        studentGrid
+        grid
     );
 
 }
 
 
 /* =========================================================
-   9. 上一题
+   10. Q8 文字异常
    ========================================================= */
 
-previousButton.addEventListener(
-    "click",
-    function() {
+function playQ8Distortion() {
 
-        if (
-            currentQuestion <= 0
-        ) {
-
-            return;
-
-        }
-
-
-        /* -----------------------------------------
-           如果当前是 Q11 机密档案模式，
-           先恢复正常
-           ----------------------------------------- */
-
-        document.body.classList.remove(
-            "secret-mode"
+    const paragraph =
+        questionContent.querySelector(
+            "p"
         );
 
 
-        const flash =
-            document.getElementById(
-                "flashScreen"
-            );
-
-        if (flash) {
-
-            flash.remove();
-
-        }
-
-
-        const temporaryMessage =
-            document.getElementById(
-                "temporaryMessage"
-            );
-
-        if (temporaryMessage) {
-
-            temporaryMessage.remove();
-
-        }
-
-
-        const secondMessage =
-            document.getElementById(
-                "secondTemporaryMessage"
-            );
-
-        if (secondMessage) {
-
-            secondMessage.remove();
-
-        }
-
-
-        currentQuestion--;
-
-        showQuestion();
-
+    if (!paragraph) {
+        return;
     }
-);
+
+
+    const question =
+        questions[7];
+
+
+    /*
+       第一次进入 Q8：
+       直接显示“劝退处理”
+    */
+
+    paragraph.textContent =
+        question.distortedQuestion;
+
+
+    /*
+       3 秒后恢复
+    */
+
+    setTimeout(
+        function () {
+
+            if (
+                currentQuestion === 7
+            ) {
+
+                paragraph.textContent =
+                    question.question;
+
+            }
+
+        },
+        3000
+    );
+
+}
 
 
 /* =========================================================
-   10. 创建闪屏
+   11. 创建闪屏
    ========================================================= */
 
 function createFlashScreen() {
 
     const flash =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     flash.id =
         "flashScreen";
@@ -1240,7 +1232,7 @@ function createFlashScreen() {
 
 
     setTimeout(
-        function() {
+        function () {
 
             if (
                 flash.parentNode
@@ -1258,7 +1250,7 @@ function createFlashScreen() {
 
 
 /* =========================================================
-   11. Q11 机密档案效果
+   12. Q11 机密档案模式
    ========================================================= */
 
 function playQ11SecretEffect() {
@@ -1267,7 +1259,7 @@ function playQ11SecretEffect() {
 
 
     setTimeout(
-        function() {
+        function () {
 
             document.body.classList.add(
                 "secret-mode"
@@ -1284,27 +1276,26 @@ function playQ11SecretEffect() {
 
 
 /* =========================================================
-   12. Q11 机密档案
+   13. Q11 机密档案页面
    ========================================================= */
 
 function showSecretStudentFiles() {
+
+    const question =
+        questions[10];
+
 
     questionTitle.textContent =
         "STUDENT PERFORMANCE DATABASE";
 
 
-    questionContent.innerHTML =
-        "";
+    questionContent.innerHTML = "";
 
 
-    /* -----------------------------------------
-       顶部警告
-       ----------------------------------------- */
+    /* 顶部警告 */
 
     const warning =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     warning.className =
         "secret-warning";
@@ -1318,209 +1309,75 @@ function showSecretStudentFiles() {
     );
 
 
-    /* -----------------------------------------
-       四张档案
-       对应 A / B / C / D
-       ----------------------------------------- */
+    /* 档案网格 */
 
-    const secretGrid =
-        document.createElement(
-            "div"
-        );
+    const grid =
+        document.createElement("div");
 
-    secretGrid.className =
+    grid.className =
         "secret-grid";
 
 
-    questions[10].students.forEach(
-        function(student) {
+    /*
+       关键修改：
+
+       四个档案分别对应
+       原来的四名学生。
+
+       A → 张睿阳
+       B → 王语彤
+       C → 李鑫怡
+       D → 陈子轩
+    */
+
+    question.students.forEach(
+        function (student) {
 
             const card =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
             card.className =
                 "secret-card";
 
 
-            /* 档案编号 */
+            card.innerHTML = `
 
-            const id =
-                document.createElement(
-                    "div"
-                );
+                <div class="secret-student-id">
+                    SUBJECT ${student.id}
+                </div>
 
-            id.className =
-                "secret-record-id";
+                <div class="secret-student-name">
+                    ${student.name}
+                </div>
 
-            id.textContent =
-                "RECORD_" +
-                student.id;
+                <div class="secret-line">
+                    年级排名：${student.rank}
+                </div>
 
+                <br>
 
-            /* 学生姓名 */
+                <div class="secret-line">
+                    状态：
+                </div>
 
-            const name =
-                document.createElement(
-                    "div"
-                );
+                <div class="secret-value">
+                    ${student.status}
+                </div>
 
-            name.className =
-                "secret-student-name";
+                <br>
 
-            name.textContent =
-                student.name;
+                <div class="secret-line">
+                    风险等级：
+                </div>
 
+                <div class="secret-value">
+                    ${student.risk}
+                </div>
 
-            /* 分隔线 */
-
-            const line =
-                document.createElement(
-                    "div"
-                );
-
-            line.className =
-                "secret-divider";
-
-            line.textContent =
-                "--------------------------------";
+            `;
 
 
-            /* 排名 */
-
-            const rank =
-                document.createElement(
-                    "div"
-                );
-
-            rank.className =
-                "secret-line";
-
-            rank.textContent =
-                "年级排名：" +
-                student.rank.replace(
-                    "第 ",
-                    ""
-                );
-
-
-            /* 状态 */
-
-            const statusLabel =
-                document.createElement(
-                    "div"
-                );
-
-            statusLabel.className =
-                "secret-line";
-
-            statusLabel.textContent =
-                "状态：";
-
-
-            const status =
-                document.createElement(
-                    "div"
-                );
-
-            status.className =
-                "secret-value";
-
-            status.textContent =
-                student.secretStatus;
-
-
-            /* 风险等级 */
-
-            const riskLabel =
-                document.createElement(
-                    "div"
-                );
-
-            riskLabel.className =
-                "secret-line";
-
-            riskLabel.textContent =
-                "风险等级：";
-
-
-            const risk =
-                document.createElement(
-                    "div"
-                );
-
-            risk.className =
-                "secret-value";
-
-            risk.textContent =
-                student.secretRisk;
-
-
-            /* 档案更新时间 */
-
-            const update =
-                document.createElement(
-                    "div"
-                );
-
-            update.className =
-                "secret-update";
-
-            update.textContent =
-                "LAST UPDATED: 2026.08.30";
-
-
-            card.appendChild(
-                id
-            );
-
-            card.appendChild(
-                name
-            );
-
-            card.appendChild(
-                line
-            );
-
-            card.appendChild(
-                rank
-            );
-
-            card.appendChild(
-                document.createElement(
-                    "br"
-                )
-            );
-
-            card.appendChild(
-                statusLabel
-            );
-
-            card.appendChild(
-                status
-            );
-
-            card.appendChild(
-                document.createElement(
-                    "br"
-                )
-            );
-
-            card.appendChild(
-                riskLabel
-            );
-
-            card.appendChild(
-                risk
-            );
-
-            card.appendChild(
-                update
-            );
-
-
-            secretGrid.appendChild(
+            grid.appendChild(
                 card
             );
 
@@ -1529,18 +1386,14 @@ function showSecretStudentFiles() {
 
 
     questionContent.appendChild(
-        secretGrid
+        grid
     );
 
 
-    /* -----------------------------------------
-       数据库记录
-       ----------------------------------------- */
+    /* 数据库提示 */
 
     const databaseMessage =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     databaseMessage.className =
         "database-message";
@@ -1554,31 +1407,23 @@ function showSecretStudentFiles() {
     );
 
 
-    /* -----------------------------------------
-       Q11 机密页面不允许重新选择
-       ----------------------------------------- */
+    /*
+       注意：
 
-    const selectedNotice =
-        document.createElement(
-            "div"
-        );
+       Q11 进入机密模式后，
+       不再要求玩家选择。
 
-    selectedNotice.className =
-        "secret-selection-notice";
+       下一题即可进入 Q12。
+    */
 
-    selectedNotice.textContent =
-        "SELECTION LOCKED";
-
-
-    questionContent.appendChild(
-        selectedNotice
-    );
+    nextButton.textContent =
+        "下一题";
 
 }
 
 
 /* =========================================================
-   13. Q12 特殊效果
+   14. Q12 特殊效果
    ========================================================= */
 
 function playQ12Effect(
@@ -1596,7 +1441,7 @@ function playQ12Effect(
 
 
     setTimeout(
-        function() {
+        function () {
 
             showTemporaryMessage(
                 "选择已记录",
@@ -1605,7 +1450,7 @@ function playQ12Effect(
 
 
             setTimeout(
-                function() {
+                function () {
 
                     showSecondMessage(
                         "倾向性：明确"
@@ -1623,14 +1468,15 @@ function playQ12Effect(
 
 
 /* =========================================================
-   14. Q13 特殊效果
+   15. Q13 特殊效果
    ========================================================= */
 
 function playQ13Effect(
     answer
 ) {
 
-    let message = "";
+    let message =
+        "";
 
 
     if (
@@ -1645,7 +1491,7 @@ function playQ13Effect(
     }
 
 
-    if (
+    else if (
         answer === "C. 很少"
         ||
         answer === "D. 从未"
@@ -1657,8 +1503,17 @@ function playQ13Effect(
     }
 
 
+    if (
+        message === ""
+    ) {
+
+        return;
+
+    }
+
+
     setTimeout(
-        function() {
+        function () {
 
             showTemporaryMessage(
                 message,
@@ -1673,7 +1528,7 @@ function playQ13Effect(
 
 
 /* =========================================================
-   15. 临时提示
+   16. 临时提示
    ========================================================= */
 
 function showTemporaryMessage(
@@ -1686,18 +1541,13 @@ function showTemporaryMessage(
             "temporaryMessage"
         );
 
-
     if (old) {
-
         old.remove();
-
     }
 
 
     const message =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     message.id =
         "temporaryMessage";
@@ -1712,7 +1562,7 @@ function showTemporaryMessage(
 
 
     setTimeout(
-        function() {
+        function () {
 
             if (
                 message.parentNode
@@ -1730,7 +1580,7 @@ function showTemporaryMessage(
 
 
 /* =========================================================
-   16. Q12 第二行提示
+   17. Q12 第二行
    ========================================================= */
 
 function showSecondMessage(
@@ -1738,9 +1588,7 @@ function showSecondMessage(
 ) {
 
     const message =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     message.id =
         "secondTemporaryMessage";
@@ -1755,13 +1603,12 @@ function showSecondMessage(
 
 
     setTimeout(
-        function() {
+        function () {
 
             const first =
                 document.getElementById(
                     "temporaryMessage"
                 );
-
 
             const second =
                 document.getElementById(
@@ -1770,16 +1617,12 @@ function showSecondMessage(
 
 
             if (first) {
-
                 first.remove();
-
             }
 
 
             if (second) {
-
                 second.remove();
-
             }
 
         },
@@ -1790,383 +1633,489 @@ function showSecondMessage(
 
 
 /* =========================================================
-   17. 下一题
+   18. 上一题
    ========================================================= */
 
-nextButton.addEventListener(
-    "click",
-    function() {
-
-        const question =
-            questions[currentQuestion];
-
-
-        let answer = "";
-
-
-        /* =================================================
-           文本题
-           ================================================= */
-
-        if (
-            question.type === "text"
-        ) {
-
-            const input =
-                document.getElementById(
-                    "answer"
-                );
-
-
-            if (input) {
-
-                answer =
-                    input.value.trim();
-
-            }
-
-        }
-
-
-        /* =================================================
-           普通单选题
-           ================================================= */
-
-        if (
-            question.type === "radio"
-        ) {
-
-            const selected =
-                document.querySelector(
-                    'input[name="answer"]:checked'
-                );
-
-
-            if (selected) {
-
-                answer =
-                    selected.value;
-
-            }
-
-        }
-
-
-        /* =================================================
-           Q11 学生选择
-           ================================================= */
-
-        if (
-            question.type === "student"
-        ) {
-
-            const selected =
-                document.querySelector(
-                    'input[name="studentAnswer"]:checked'
-                );
-
-
-            if (selected) {
-
-                answer =
-                    selected.value;
-
-            }
-
-        }
-
-
-        /* =================================================
-           防止空白
-           ================================================= */
-
-        if (
-            answer === ""
-        ) {
-
-            alert(
-                "请完成本题后继续。"
-            );
-
-            return;
-
-        }
-
-
-        /* =================================================
-           删除旧分数
-           防止上一题返回后重复计算
-           ================================================= */
-
-        if (
-            question.scores
-            &&
-            answers[currentQuestion]
-            !== undefined
-        ) {
-
-            const oldAnswer =
-                answers[currentQuestion];
-
-
-            answers.score -=
-                question.scores[
-                    oldAnswer
-                ]
-                || 0;
-
-        }
-
-
-        /* =================================================
-           Q11 删除旧学生分数
-           ================================================= */
-
-        if (
-            question.type === "student"
-            &&
-            answers[currentQuestion]
-            !== undefined
-        ) {
-
-            const oldStudentID =
-                answers[currentQuestion];
-
-
-            const oldStudent =
-                question.students.find(
-                    function(student) {
-
-                        return (
-                            student.id
-                            === oldStudentID
-                        );
-
-                    }
-                );
-
-
-            if (oldStudent) {
-
-                answers.score -=
-                    oldStudent.score;
-
-            }
-
-        }
-
-
-        /* =================================================
-           保存答案
-           ================================================= */
-
-        answers[currentQuestion] =
-            answer;
-
-
-        /* =================================================
-           普通题目积分
-           ================================================= */
-
-        if (
-            question.scores
-        ) {
-
-            answers.score +=
-                question.scores[
-                    answer
-                ]
-                || 0;
-
-        }
-
-
-        /* =================================================
-           Q11 积分
-           ================================================= */
-
-        if (
-            question.type === "student"
-        ) {
-
-            const selectedStudent =
-                question.students.find(
-                    function(student) {
-
-                        return (
-                            student.id
-                            === answer
-                        );
-
-                    }
-                );
-
-
-            if (selectedStudent) {
-
-                answers.score +=
-                    selectedStudent.score;
-
-            }
-
-        }
-
-
-        console.log(
-            "当前玩家数据：",
-            answers
-        );
-
-
-        /* =================================================
-           Q6 → Q7
-           ================================================= */
-
-        if (
-            currentQuestion === 5
-        ) {
-
-            showTemporaryMessage(
-                "选择已记录",
-                800
-            );
-
-        }
-
-
-        /* =================================================
-           Q11
-           ================================================= */
-
-        if (
-            question.type === "student"
-        ) {
-
-            /*
-               这里非常重要：
-
-               Q11 点击下一题以后
-               不自动进入 Q12。
-
-               只切换成机密档案模式。
-
-               玩家再次点击“下一题”
-               才进入 Q12。
-            */
-
-
-            playQ11SecretEffect();
-
-
-            /*
-               不改变 currentQuestion
-               所以仍然是 Q11
-            */
-
-            return;
-
-        }
-
-
-        /* =================================================
-           Q12
-           ================================================= */
-
-        if (
-            currentQuestion === 11
-        ) {
-
-            playQ12Effect(
-                answer
-            );
-
-        }
-
-
-        /* =================================================
-           Q13
-           ================================================= */
-
-        if (
-            currentQuestion === 12
-        ) {
-
-            playQ13Effect(
-                answer
-            );
-
-        }
-
-
-        /* =================================================
-           进入下一题
-           ================================================= */
-
-        currentQuestion++;
-
-
-        if (
-            currentQuestion
-            <
-            questions.length
-        ) {
-
-            let delay = 0;
-
-
-            /* -----------------------------------------
-               Q6 → Q7
-               ----------------------------------------- */
+if (previousButton) {
+
+    previousButton.addEventListener(
+        "click",
+        function () {
 
             if (
-                question === questions[5]
+                currentQuestion <= 0
             ) {
 
-                delay = 850;
+                return;
 
             }
 
 
-            setTimeout(
-                function() {
+            /*
+               如果当前是 Q11 机密档案，
+               返回 Q10 时恢复正常。
+            */
+
+            clearEffects();
+
+
+            currentQuestion--;
+
+
+            showQuestion();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   19. 下一题
+   ========================================================= */
+
+if (nextButton) {
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            const question =
+                questions[currentQuestion];
+
+
+            if (!question) {
+                return;
+            }
+
+
+            let answer =
+                "";
+
+
+            /* =================================================
+               文本题
+               ================================================= */
+
+            if (
+                question.type === "text"
+            ) {
+
+                const input =
+                    document.getElementById(
+                        "answer"
+                    );
+
+
+                if (input) {
+
+                    answer =
+                        input.value.trim();
+
+                }
+
+            }
+
+
+            /* =================================================
+               普通单选题
+               ================================================= */
+
+            if (
+                question.type === "radio"
+            ) {
+
+                const selected =
+                    document.querySelector(
+                        'input[name="answer"]:checked'
+                    );
+
+
+                if (selected) {
+
+                    answer =
+                        selected.value;
+
+                }
+
+            }
+
+
+            /* =================================================
+               Q11
+               ================================================= */
+
+            if (
+                question.type === "student"
+            ) {
+
+                /*
+                   如果已经进入机密档案模式，
+                   直接进入 Q12。
+
+                   不再要求重新选择。
+                */
+
+                if (
+                    q11SecretShown
+                ) {
+
+                    currentQuestion++;
+
+                    document.body.classList.remove(
+                        "secret-mode"
+                    );
 
                     showQuestion();
 
-                },
-                delay
-            );
+                    return;
+
+                }
+
+
+                const selected =
+                    document.querySelector(
+                        'input[name="studentAnswer"]:checked'
+                    );
+
+
+                if (selected) {
+
+                    answer =
+                        selected.value;
+
+                }
+
+
+                /*
+                   Q11 必须先选择学生
+                */
+
+                if (
+                    answer === ""
+                ) {
+
+                    alert(
+                        "请完成本题后继续。"
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+            /* =================================================
+               防止空白
+               ================================================= */
+
+            if (
+                answer === ""
+            ) {
+
+                alert(
+                    "请完成本题后继续。"
+                );
+
+                return;
+
+            }
+
+
+            /* =================================================
+               删除旧分数
+               ================================================= */
+
+            if (
+                question.scores
+                &&
+                answers[currentQuestion]
+                !== undefined
+            ) {
+
+                const oldAnswer =
+                    answers[currentQuestion];
+
+
+                const oldScore =
+                    question.scores[
+                        oldAnswer
+                    ];
+
+
+                if (
+                    oldScore !== undefined
+                ) {
+
+                    answers.score -=
+                        oldScore;
+
+                }
+
+            }
+
+
+            /* =================================================
+               Q11 删除旧分数
+               ================================================= */
+
+            if (
+                question.type === "student"
+                &&
+                answers[currentQuestion]
+                !== undefined
+            ) {
+
+                const oldID =
+                    answers[currentQuestion];
+
+
+                const oldStudent =
+                    question.students.find(
+                        function (student) {
+
+                            return (
+                                student.id
+                                === oldID
+                            );
+
+                        }
+                    );
+
+
+                if (oldStudent) {
+
+                    answers.score -=
+                        oldStudent.score;
+
+                }
+
+            }
+
+
+            /* =================================================
+               保存答案
+               ================================================= */
+
+            answers[currentQuestion] =
+                answer;
+
+
+            /* =================================================
+               增加分数
+               ================================================= */
+
+            if (
+                question.scores
+            ) {
+
+                const score =
+                    question.scores[
+                        answer
+                    ];
+
+
+                if (
+                    score !== undefined
+                ) {
+
+                    answers.score +=
+                        score;
+
+                }
+
+            }
+
+
+            /* =================================================
+               Q11 学生分数
+               ================================================= */
+
+            if (
+                question.type === "student"
+            ) {
+
+                const student =
+                    question.students.find(
+                        function (item) {
+
+                            return (
+                                item.id
+                                === answer
+                            );
+
+                        }
+                    );
+
+
+                if (student) {
+
+                    answers.score +=
+                        student.score;
+
+                }
+
+
+                /*
+                   标记 Q11 已经看过机密档案
+                */
+
+                q11SecretShown =
+                    true;
+
+
+                /*
+                   Q11：
+
+                   点击下一题
+                       ↓
+                   闪屏
+                       ↓
+                   0.5 秒
+                       ↓
+                   黑底绿字
+                       ↓
+                   玩家自己点击下一题
+                       ↓
+                   Q12
+                */
+
+                playQ11SecretEffect();
+
+
+                /*
+                   这里非常重要：
+
+                   不再自动跳 Q12。
+                */
+
+                return;
+
+            }
+
+
+            /* =================================================
+               Q6 → Q7
+               ================================================= */
+
+            if (
+                currentQuestion === 5
+            ) {
+
+                showTemporaryMessage(
+                    "选择已记录",
+                    800
+                );
+
+
+                currentQuestion++;
+
+
+                setTimeout(
+                    function () {
+
+                        showQuestion();
+
+                    },
+                    850
+                );
+
+
+                return;
+
+            }
+
+
+            /* =================================================
+               Q12
+               ================================================= */
+
+            if (
+                currentQuestion === 11
+            ) {
+
+                playQ12Effect(
+                    answer
+                );
+
+            }
+
+
+            /* =================================================
+               Q13
+               ================================================= */
+
+            if (
+                currentQuestion === 12
+            ) {
+
+                playQ13Effect(
+                    answer
+                );
+
+            }
+
+
+            /* =================================================
+               下一题
+               ================================================= */
+
+            currentQuestion++;
+
+
+            if (
+                currentQuestion
+                <
+                questions.length
+            ) {
+
+                showQuestion();
+
+            }
+
+            else {
+
+                finishSurvey();
+
+            }
 
         }
+    );
 
-        else {
-
-            /* -----------------------------------------
-               暂时结束
-               ----------------------------------------- */
-
-            questionTitle.textContent =
-                "问卷已完成";
+}
 
 
-            questionContent.innerHTML =
-                "<p>感谢您完成本次调查。</p>";
+/* =========================================================
+   20. 问卷暂时结束
+   ========================================================= */
+
+function finishSurvey() {
+
+    questionTitle.textContent =
+        "问卷已完成";
 
 
-            nextButton.style.display =
-                "none";
+    questionContent.innerHTML = `
+
+        <p>
+            感谢您完成本次调查。
+        </p>
+
+    `;
 
 
-            previousButton.style.display =
-                "none";
+    nextButton.style.display =
+        "none";
 
 
-            console.log(
-                "最终隐藏评分：",
-                answers.score
-            );
+    previousButton.style.display =
+        "none";
 
-        }
 
-    }
-);
-```
+    console.log(
+        "最终隐藏评分：",
+        answers.score
+    );
+
+}
