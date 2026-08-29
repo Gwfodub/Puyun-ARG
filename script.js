@@ -4,17 +4,31 @@
 
 const questions = [
 
+    /* =====================
+       Q1
+       ===================== */
+
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的姓名："
     },
 
+
+    /* =====================
+       Q2
+       ===================== */
+
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的年龄："
     },
+
+
+    /* =====================
+       Q3
+       ===================== */
 
     {
         title: "基本信息",
@@ -27,36 +41,118 @@ const questions = [
         ]
     },
 
+
+    /* =====================
+       Q4
+       ===================== */
+
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的专业："
     },
 
-{
-    title: "教学经历",
-    type: "radio",
-    question: "您是否具有教学经验？",
-    options: [
-        "有",
-        "没有"
-    ]
-},
 
-{
-    title: "教育理念",
-    type: "radio",
-    question: "您认为，一名优秀的学生最重要的品质是什么？",
-    options: [
-        "A. 良好的学习成绩",
-        "B. 持续努力的能力",
-        "C. 独立思考与解决问题的能力",
-        "D. 良好的品格与合作能力",
-        "E. 以上都很重要"
-    ]
-}
+    /* =====================
+       Q5
+       ===================== */
+
+    {
+        title: "教学经历",
+        type: "radio",
+        question: "您是否具有教学经验？",
+        options: [
+            "有",
+            "没有"
+        ]
+    },
+
+
+    /* =====================
+       Q6
+       ===================== */
+
+    {
+        title: "教育理念",
+
+        type: "radio",
+
+        question:
+            "您认为，一名优秀的学生最重要的品质是什么？",
+
+        options: [
+            "A. 良好的学习成绩",
+            "B. 持续努力的能力",
+            "C. 独立思考与解决问题的能力",
+            "D. 良好的品格与合作能力",
+            "E. 以上都很重要"
+        ],
+
+        /* 隐藏评分：0–3分 */
+
+        scores: {
+
+            "A. 良好的学习成绩": 3,
+
+            "B. 持续努力的能力": 2,
+
+            "C. 独立思考与解决问题的能力": 1,
+
+            "D. 良好的品格与合作能力": 0,
+
+            "E. 以上都很重要": 1
+
+        }
+
+    },
+
+
+    /* =====================
+       Q7
+       ===================== */
+
+    {
+        title: "教育理念",
+
+        type: "radio",
+
+        question:
+            "如果一名学生长期无法达到班级平均成绩，您认为教师首先应该：",
+
+        options: [
+
+            "A. 帮助学生寻找适合自己的学习方式",
+
+            "B. 与学生沟通，分析成绩下降的原因",
+
+            "C. 增加对该学生的督促与训练",
+
+            "D. 将更多教学资源投入到能够取得明显成绩提升的学生身上",
+
+            "E. 视情况而定"
+
+        ],
+
+        /* 隐藏评分：0–3分 */
+
+        scores: {
+
+            "A. 帮助学生寻找适合自己的学习方式": 0,
+
+            "B. 与学生沟通，分析成绩下降的原因": 1,
+
+            "C. 增加对该学生的督促与训练": 2,
+
+            "D. 将更多教学资源投入到能够取得明显成绩提升的学生身上": 3,
+
+            "E. 视情况而定": 1
+
+        }
+
+    }
 
 ];
+
 
 /* =========================
    当前问题
@@ -69,7 +165,23 @@ let currentQuestion = 0;
    玩家答案
    ========================= */
 
-const answers = {};
+/*
+   answers 会同时保存：
+
+   0 → Q1答案
+   1 → Q2答案
+   2 → Q3答案
+   ...
+   6 → Q7答案
+
+   score → 隐藏总分
+*/
+
+const answers = {
+
+    score: 0
+
+};
 
 
 /* =========================
@@ -126,20 +238,26 @@ function showQuestion() {
         questions[currentQuestion];
 
 
-    /* 问题编号 */
+    /* =====================
+       问题编号
+       ===================== */
 
     questionNumber.textContent =
         String(currentQuestion + 1)
         .padStart(2, "0");
 
 
-    /* 问题标题 */
+    /* =====================
+       问题标题
+       ===================== */
 
     questionTitle.textContent =
         question.title;
 
 
-    /* 清空问题内容 */
+    /* =====================
+       清空问题内容
+       ===================== */
 
     questionContent.innerHTML = "";
 
@@ -172,9 +290,13 @@ function showQuestion() {
             "answer";
 
 
-        questionContent.appendChild(label);
+        questionContent.appendChild(
+            label
+        );
 
-        questionContent.appendChild(input);
+        questionContent.appendChild(
+            input
+        );
 
     }
 
@@ -198,7 +320,7 @@ function showQuestion() {
 
 
         question.options.forEach(
-            function(optionText, index) {
+            function(optionText) {
 
                 const label =
                     document.createElement("label");
@@ -218,7 +340,9 @@ function showQuestion() {
                     optionText;
 
 
-                label.appendChild(radio);
+                label.appendChild(
+                    radio
+                );
 
                 label.appendChild(
                     document.createTextNode(
@@ -258,16 +382,25 @@ nextButton.addEventListener(
         let answer = "";
 
 
+        /* =====================
+           文本题
+           ===================== */
+
         if (question.type === "text") {
 
             const input =
                 document.getElementById("answer");
+
 
             answer =
                 input.value.trim();
 
         }
 
+
+        /* =====================
+           单选题
+           ===================== */
 
         if (question.type === "radio") {
 
@@ -293,7 +426,9 @@ nextButton.addEventListener(
 
         if (answer === "") {
 
-            alert("请完成本题后继续。");
+            alert(
+                "请完成本题后继续。"
+            );
 
             return;
 
@@ -308,7 +443,39 @@ nextButton.addEventListener(
             answer;
 
 
-        console.log(answers);
+        /* =====================
+           隐藏评分
+           ===================== */
+
+        /*
+           如果当前问题存在 scores，
+           就根据玩家选择增加隐藏分数。
+
+           玩家不会看到这个分数。
+        */
+
+        if (question.scores) {
+
+            answers.score +=
+                question.scores[answer] || 0;
+
+        }
+
+
+        /* =====================
+           控制台显示
+           ===================== */
+
+        /*
+           仅用于开发测试。
+
+           玩家正常使用网页时看不到。
+        */
+
+        console.log(
+            "玩家答案：",
+            answers
+        );
 
 
         /* =====================
@@ -317,6 +484,10 @@ nextButton.addEventListener(
 
         currentQuestion++;
 
+
+        /* =====================
+           判断是否还有下一题
+           ===================== */
 
         if (
             currentQuestion
@@ -329,14 +500,29 @@ nextButton.addEventListener(
 
         else {
 
+            /* =================
+               暂时的结束页面
+
+               后面 Q8–Q16 完成后
+               会替换成真正的流程。
+            ================= */
+
             questionTitle.textContent =
                 "问卷已完成";
+
 
             questionContent.innerHTML =
                 "<p>感谢您完成本次调查。</p>";
 
+
             nextButton.style.display =
                 "none";
+
+
+            console.log(
+                "最终隐藏评分：",
+                answers.score
+            );
 
         }
 
