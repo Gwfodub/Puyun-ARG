@@ -2646,29 +2646,230 @@ function finishSurvey() {
 
     clearEffects();
 
+    /*
+       Q16 完成以后才正式进入结局
+    */
+
+    const finalScore =
+        answers.score;
+
+
+    let ending;
+
+
+    /* =====================================================
+       结局一
+       0–11 分
+       ===================================================== */
+
+    if (finalScore <= 11) {
+
+        ending = {
+
+            type: "ENDING 01",
+
+            title:
+                "教育理念匹配度较低",
+
+            text:
+                "您的选择显示，您更加重视学生的个体发展、教育公平以及对处于困难中的学生提供持续支持。您对以竞争、排名和结果作为主要评价依据的教育方式持较为谨慎的态度。",
+
+            result:
+                "综合评价：您的教育理念与浦云大学附属中学当前的教育管理体系存在较大差异。"
+
+        };
+
+    }
+
+
+    /* =====================================================
+       结局二
+       12–22 分
+       ===================================================== */
+
+    else if (finalScore <= 22) {
+
+        ending = {
+
+            type: "ENDING 02",
+
+            title:
+                "教育理念存在一定适配性",
+
+            text:
+                "您的选择显示，您能够理解学校对于教学质量、学生成绩和教育效率的要求，同时也关注学生个体差异与发展需求。您在教育公平与竞争机制之间表现出一定程度的平衡倾向。",
+
+            result:
+                "综合评价：您的教育理念与浦云大学附属中学存在一定程度的适配性。"
+
+        };
+
+    }
+
+
+    /* =====================================================
+       结局三
+       23–33 分
+       ===================================================== */
+
+    else {
+
+        ending = {
+
+            type: "ENDING 03",
+
+            title:
+                "教育理念高度匹配",
+
+            text:
+                "您的选择显示，您高度重视教学效率、学业表现、竞争能力以及教育资源的有效配置。您能够接受通过持续评价和绩效机制识别学生与教师的发展表现。",
+
+            result:
+                "综合评价：您的教育理念与浦云大学附属中学当前的教育管理体系高度匹配。"
+
+        };
+
+    }
+
+
+    /* =====================================================
+       最终页面
+       ===================================================== */
 
     questionTitle.textContent =
-        "问卷已完成";
+        ending.title;
 
 
-    questionContent.innerHTML = `
-        <p>
-            感谢您完成本次调查。
-        </p>
-    `;
+    questionContent.innerHTML = "";
 
+
+    const endingContainer =
+        document.createElement("div");
+
+    endingContainer.className =
+        "ending-container";
+
+
+    /* 结局编号 */
+
+    const endingType =
+        document.createElement("div");
+
+    endingType.className =
+        "ending-type";
+
+    endingType.textContent =
+        ending.type;
+
+
+    /* 结局正文 */
+
+    const endingText =
+        document.createElement("p");
+
+    endingText.className =
+        "ending-text";
+
+    endingText.textContent =
+        ending.text;
+
+
+    /* 综合评价 */
+
+    const endingResult =
+        document.createElement("p");
+
+    endingResult.className =
+        "ending-result";
+
+    endingResult.textContent =
+        ending.result;
+
+
+    /* 分隔线 */
+
+    const divider =
+        document.createElement("div");
+
+    divider.className =
+        "ending-divider";
+
+
+    /* 感谢 */
+
+    const thanks =
+        document.createElement("p");
+
+    thanks.className =
+        "ending-thanks";
+
+    thanks.textContent =
+        "感谢您完成本次招聘调查。";
+
+
+    endingContainer.appendChild(
+        endingType
+    );
+
+    endingContainer.appendChild(
+        endingText
+    );
+
+    endingContainer.appendChild(
+        endingResult
+    );
+
+    endingContainer.appendChild(
+        divider
+    );
+
+    endingContainer.appendChild(
+        thanks
+    );
+
+
+    questionContent.appendChild(
+        endingContainer
+    );
+
+
+    /* =====================================================
+       隐藏操作按钮
+       ===================================================== */
 
     nextButton.style.display =
         "none";
-
 
     previousButton.style.display =
         "none";
 
 
+    /* =====================================================
+       控制台记录
+       ===================================================== */
+
     console.log(
-        "最终隐藏评分：",
-        answers.score
+        "========== 招聘调查结果 =========="
+    );
+
+    console.log(
+        "最终得分：",
+        finalScore
+    );
+
+    console.log(
+        "Q15 拒绝次数：",
+        q15RejectCount
+    );
+
+    console.log(
+        "Q15 是否强制接受：",
+        q15ForcedAcceptance
+    );
+
+    console.log(
+        "最终结局：",
+        ending.type
     );
 
 }
