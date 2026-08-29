@@ -575,3 +575,372 @@ button:hover {
     }
 
 }
+
+/* =========================
+   系统提示
+   ========================= */
+
+#temporaryMessage {
+
+    position: fixed;
+
+    top: 24px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 10px 22px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border: 1px solid #999;
+
+    color: #444;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    z-index: 9999;
+
+    animation: messageAppear 0.2s ease;
+
+}
+
+
+/* =========================
+   Q12 第二行提示
+   ========================= */
+
+#secondTemporaryMessage {
+
+    position: fixed;
+
+    top: 61px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 8px 18px;
+
+    color: #555;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    z-index: 9999;
+
+    animation: messageAppear 0.2s ease;
+
+}
+
+
+/* =========================
+   提示出现
+   ========================= */
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(-5px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+   Q11 闪屏
+   ========================= */
+
+#flashScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: white;
+
+    z-index: 99999;
+
+    animation: flashEffect 0.18s linear;
+
+}
+
+
+@keyframes flashEffect {
+
+    0% {
+
+        opacity: 0;
+
+    }
+
+    40% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =========================
+   Q11 机密数据库模式
+   ========================= */
+
+body.secret-mode {
+
+    background: #050805;
+
+    color: #55ff55;
+
+}
+
+
+/* =========================
+   机密模式中的主要区域
+   ========================= */
+
+body.secret-mode
+.survey-container {
+
+    background: #050805;
+
+    color: #55ff55;
+
+}
+
+
+/* =========================
+   标题
+   ========================= */
+
+body.secret-mode
+#questionTitle {
+
+    color: #55ff55;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================
+   问题编号
+   ========================= */
+
+body.secret-mode
+#questionNumber {
+
+    color: #55ff55;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+}
+
+
+/* =========================
+   警告文字
+   ========================= */
+
+.secret-warning {
+
+    margin-bottom: 25px;
+
+    color: #55ff55;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    border-bottom:
+        1px solid #1f7a1f;
+
+    padding-bottom: 12px;
+
+}
+
+
+/* =========================
+   四张机密档案
+   ========================= */
+
+.secret-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+
+}
+
+
+/* =========================
+   档案卡片
+   ========================= */
+
+.secret-card {
+
+    border:
+        1px solid #1f7a1f;
+
+    padding: 20px;
+
+    background:
+        rgba(0, 30, 0, 0.35);
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    box-shadow:
+        0 0 8px
+        rgba(0, 255, 0, 0.08);
+
+}
+
+
+/* =========================
+   学生姓名
+   ========================= */
+
+.secret-student-name {
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    color: #66ff66;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =========================
+   普通档案文字
+   ========================= */
+
+.secret-line {
+
+    font-size: 13px;
+
+    color: #45c745;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================
+   LOW
+   ========================= */
+
+.secret-value {
+
+    color: #55ff55;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   数据库记录
+   ========================= */
+
+.database-message {
+
+    margin-top: 30px;
+
+    color: #277c27;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================
+   Q11 黑屏模式按钮
+   ========================= */
+
+body.secret-mode
+#nextButton,
+
+body.secret-mode
+#previousButton {
+
+    background: #050805;
+
+    color: #55ff55;
+
+    border:
+        1px solid #267326;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+}
+
+
+/* =========================
+   手机适配
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .secret-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
