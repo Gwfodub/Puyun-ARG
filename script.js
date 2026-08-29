@@ -1,7 +1,7 @@
 /* =========================
    浦云大学附属中学
    实习教师招聘调查问卷
-   Q1–Q11
+   Q1–Q14
    ========================= */
 
 
@@ -100,7 +100,9 @@ const questions = [
             "C. 独立思考与解决问题的能力": 1,
             "D. 良好的品格与合作能力": 0,
             "E. 以上都很重要": 1
-        }
+        },
+
+        effect: "record"
     },
 
 
@@ -139,10 +141,14 @@ const questions = [
 
     {
         title: "学业质量管理",
+
         type: "radio",
 
         question:
-            "浦云大学附属中学实行严格的学业质量管理制度：为确保教学质量及学生学习效率，学校每学年将根据学生的周测、月考及学年期末考试成绩进行综合评价。综合评价排名位于年级后15%的学生，将进入学业调整程序。您能否接受这一评价制度？",
+            "浦云大学附属中学实行严格的学业质量管理制度：为确保教学质量及学生学习效率，学校每学年将根据学生的周测、月考及学年期末考试成绩进行综合评价。综合评价排名位于年级后15%的学生，将进入学业调整程序。",
+
+        distortedQuestion:
+            "浦云大学附属中学实行严格的学业质量管理制度：为确保教学质量及学生学习效率，学校每学年将根据学生的周测、月考及学年期末考试成绩进行综合评价。综合评价排名位于年级后15%的学生，将进行劝退处理。",
 
         options: [
             "A. 可以接受",
@@ -156,7 +162,9 @@ const questions = [
             "B. 基本可以接受": 2,
             "C. 需要进一步了解": 1,
             "D. 无法接受": 0
-        }
+        },
+
+        effect: "q8"
     },
 
 
@@ -166,6 +174,7 @@ const questions = [
 
     {
         title: "学业评价标准",
+
         type: "radio",
 
         question:
@@ -193,6 +202,7 @@ const questions = [
 
     {
         title: "教师绩效管理",
+
         type: "radio",
 
         question:
@@ -228,10 +238,6 @@ const questions = [
 
         students: [
 
-            /* =================
-               A
-               ================= */
-
             {
                 id: "A",
 
@@ -256,10 +262,6 @@ const questions = [
                 score: 3
             },
 
-
-            /* =================
-               B
-               ================= */
 
             {
                 id: "B",
@@ -286,10 +288,6 @@ const questions = [
             },
 
 
-            /* =================
-               C
-               ================= */
-
             {
                 id: "C",
 
@@ -314,10 +312,6 @@ const questions = [
                 score: 1
             },
 
-
-            /* =================
-               D
-               ================= */
 
             {
                 id: "D",
@@ -344,6 +338,125 @@ const questions = [
             }
 
         ]
+    },
+
+
+    /* =====================
+       Q12
+       ===================== */
+
+    {
+        title: "资源配置倾向",
+
+        type: "radio",
+
+        question:
+            "在高度竞争的教育环境中，资源往往是有限的。当所有人无法同时获得最优资源时，您更认同：",
+
+        options: [
+
+            "A. 优先帮助最需要帮助的人",
+
+            "B. 优先帮助最有潜力的人",
+
+            "C. 优先帮助能够取得最好结果的人",
+
+            "D. 应尽可能平均分配资源"
+
+        ],
+
+        scores: {
+
+            "A. 优先帮助最需要帮助的人": 0,
+
+            "B. 优先帮助最有潜力的人": 2,
+
+            "C. 优先帮助能够取得最好结果的人": 3,
+
+            "D. 应尽可能平均分配资源": 1
+
+        },
+
+        effect: "q12"
+    },
+
+
+    /* =====================
+       Q13
+       ===================== */
+
+    {
+        title: "个人经历评估",
+
+        type: "radio",
+
+        question:
+            "在您的学习或工作经历中，您是否曾经因为担心自己落后于他人，而主动增加学习或工作时间？",
+
+        options: [
+
+            "A. 经常",
+
+            "B. 偶尔",
+
+            "C. 很少",
+
+            "D. 从未"
+
+        ],
+
+        scores: {
+
+            "A. 经常": 3,
+
+            "B. 偶尔": 2,
+
+            "C. 很少": 1,
+
+            "D. 从未": 0
+
+        },
+
+        effect: "q13"
+    },
+
+
+    /* =====================
+       Q14
+       ===================== */
+
+    {
+        title: "适应性评估",
+
+        type: "radio",
+
+        question:
+            "假设您在一次重要考核中排名处于所有参与者的后15%，您更希望学校如何处理您的情况？",
+
+        options: [
+
+            "A. 给我一次改进机会",
+
+            "B. 分析我的问题并提供帮助",
+
+            "C. 根据制度进行调整",
+
+            "D. 如果制度要求，我可以接受结果"
+
+        ],
+
+        scores: {
+
+            "A. 给我一次改进机会": 0,
+
+            "B. 分析我的问题并提供帮助": 1,
+
+            "C. 根据制度进行调整": 2,
+
+            "D. 如果制度要求，我可以接受结果": 3
+
+        }
+
     }
 
 ];
@@ -464,17 +577,36 @@ function showQuestion() {
 
 
     /* =====================
-       清空问题内容
+       清空问题
        ===================== */
 
     questionContent.innerHTML = "";
 
 
     /* =====================
-       普通文本题
+       Q8 特殊处理
        ===================== */
 
-    if (question.type === "text") {
+    if (
+        currentQuestion === 7
+    ) {
+
+        questionContent.dataset.q8Normal =
+            question.question;
+
+        questionContent.dataset.q8Distorted =
+            question.distortedQuestion;
+
+    }
+
+
+    /* =====================
+       文本题
+       ===================== */
+
+    if (
+        question.type === "text"
+    ) {
 
         const label =
             document.createElement("label");
@@ -525,7 +657,9 @@ function showQuestion() {
        普通单选题
        ===================== */
 
-    if (question.type === "radio") {
+    if (
+        question.type === "radio"
+    ) {
 
         const questionText =
             document.createElement("p");
@@ -599,7 +733,9 @@ function showQuestion() {
        学生档案卡片
        ===================== */
 
-    if (question.type === "student") {
+    if (
+        question.type === "student"
+    ) {
 
         const questionText =
             document.createElement("p");
@@ -616,20 +752,12 @@ function showQuestion() {
         );
 
 
-        /*
-           创建学生卡片容器
-        */
-
         const studentGrid =
             document.createElement("div");
 
         studentGrid.className =
             "student-grid";
 
-
-        /*
-           创建四张学生档案卡片
-        */
 
         question.students.forEach(
             function(student) {
@@ -640,10 +768,6 @@ function showQuestion() {
                 card.className =
                     "student-card";
 
-
-                /*
-                   单选按钮
-                */
 
                 const radio =
                     document.createElement("input");
@@ -657,10 +781,6 @@ function showQuestion() {
                 radio.value =
                     student.id;
 
-
-                /*
-                   恢复之前的选择
-                */
 
                 if (
                     answers[currentQuestion]
@@ -676,10 +796,6 @@ function showQuestion() {
 
                 }
 
-
-                /* =================
-                   卡片头部
-                   ================= */
 
                 const header =
                     document.createElement("div");
@@ -717,10 +833,6 @@ function showQuestion() {
                 );
 
 
-                /* =================
-                   排名
-                   ================= */
-
                 const rank =
                     document.createElement("div");
 
@@ -731,10 +843,6 @@ function showQuestion() {
                     "年级综合排名：" +
                     student.rank;
 
-
-                /* =================
-                   成绩表
-                   ================= */
 
                 const scoreTable =
                     document.createElement("div");
@@ -792,10 +900,6 @@ function showQuestion() {
                 );
 
 
-                /* =================
-                   AI学情总结
-                   ================= */
-
                 const summary =
                     document.createElement("div");
 
@@ -825,10 +929,6 @@ function showQuestion() {
                     summaryText
                 );
 
-
-                /* =================
-                   教师备注
-                   ================= */
 
                 const note =
                     document.createElement("div");
@@ -860,10 +960,6 @@ function showQuestion() {
                 );
 
 
-                /* =================
-                   选择提示
-                   ================= */
-
                 const selectText =
                     document.createElement("div");
 
@@ -873,10 +969,6 @@ function showQuestion() {
                 selectText.textContent =
                     "○ 选择该学生";
 
-
-                /* =================
-                   组装卡片
-                   ================= */
 
                 card.appendChild(
                     radio
@@ -906,10 +998,6 @@ function showQuestion() {
                     selectText
                 );
 
-
-                /* =================
-                   点击卡片后的视觉效果
-                   ================= */
 
                 radio.addEventListener(
                     "change",
@@ -953,11 +1041,13 @@ function showQuestion() {
     }
 
 
-    /* =========================
+    /* =====================
        上一题按钮
-       ========================= */
+       ===================== */
 
-    if (currentQuestion === 0) {
+    if (
+        currentQuestion === 0
+    ) {
 
         previousButton.style.display =
             "none";
@@ -972,9 +1062,9 @@ function showQuestion() {
     }
 
 
-    /* =========================
+    /* =====================
        下一题按钮
-       ========================= */
+       ===================== */
 
     nextButton.style.display =
         "inline-block";
@@ -997,6 +1087,53 @@ function showQuestion() {
 
     }
 
+
+    /* =====================
+       Q8：进入页面后显示
+       “劝退处理”
+       ===================== */
+
+    if (
+        currentQuestion === 7
+    ) {
+
+        const questionParagraph =
+            questionContent.querySelector(
+                "p"
+            );
+
+
+        if (questionParagraph) {
+
+            questionParagraph.textContent =
+                question.distortedQuestion;
+
+
+            setTimeout(
+                function() {
+
+                    /*
+                       如果玩家仍然停留在 Q8
+                       才恢复正常文字
+                    */
+
+                    if (
+                        currentQuestion === 7
+                    ) {
+
+                        questionParagraph.textContent =
+                            question.question;
+
+                    }
+
+                },
+                3000
+            );
+
+        }
+
+    }
+
 }
 
 
@@ -1008,7 +1145,9 @@ previousButton.addEventListener(
     "click",
     function() {
 
-        if (currentQuestion <= 0) {
+        if (
+            currentQuestion <= 0
+        ) {
 
             return;
 
@@ -1017,7 +1156,6 @@ previousButton.addEventListener(
 
         currentQuestion--;
 
-
         showQuestion();
 
     }
@@ -1025,7 +1163,419 @@ previousButton.addEventListener(
 
 
 /* =========================
-   下一题 / 提交
+   创建全屏闪屏
+   ========================= */
+
+function createFlashScreen() {
+
+    const flash =
+        document.createElement("div");
+
+    flash.id =
+        "flashScreen";
+
+
+    document.body.appendChild(
+        flash
+    );
+
+
+    setTimeout(
+        function() {
+
+            flash.remove();
+
+        },
+        180
+    );
+
+}
+
+
+/* =========================
+   Q11
+   机密档案效果
+   ========================= */
+
+function playQ11SecretEffect() {
+
+    /*
+       第一步：
+       页面闪白
+    */
+
+    createFlashScreen();
+
+
+    /*
+       第二步：
+       等待 0.5 秒
+       进入机密档案模式
+    */
+
+    setTimeout(
+        function() {
+
+            document.body.classList.add(
+                "secret-mode"
+            );
+
+
+            showSecretStudentFiles();
+
+        },
+        500
+    );
+
+}
+
+
+/* =========================
+   Q11 机密学生档案
+   ========================= */
+
+function showSecretStudentFiles() {
+
+    questionTitle.textContent =
+        "STUDENT PERFORMANCE DATABASE";
+
+
+    questionContent.innerHTML = "";
+
+
+    const warning =
+        document.createElement("div");
+
+    warning.className =
+        "secret-warning";
+
+    warning.textContent =
+        "CONFIDENTIAL // INTERNAL USE ONLY";
+
+
+    questionContent.appendChild(
+        warning
+    );
+
+
+    const secretGrid =
+        document.createElement("div");
+
+    secretGrid.className =
+        "secret-grid";
+
+
+    /*
+       注意：
+       四张卡片全部显示为
+       张睿阳
+    */
+
+    for (
+        let i = 0;
+        i < 4;
+        i++
+    ) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "secret-card";
+
+
+        card.innerHTML = `
+            <div class="secret-student-name">
+                张睿阳
+            </div>
+
+            <div class="secret-line">
+                年级排名：3
+            </div>
+
+            <br>
+
+            <div class="secret-line">
+                状态：
+            </div>
+
+            <div class="secret-value">
+                正常
+            </div>
+
+            <br>
+
+            <div class="secret-line">
+                风险等级：
+            </div>
+
+            <div class="secret-value">
+                LOW
+            </div>
+        `;
+
+
+        secretGrid.appendChild(
+            card
+        );
+
+    }
+
+
+    questionContent.appendChild(
+        secretGrid
+    );
+
+
+    /*
+       页面底部提示
+    */
+
+    const databaseMessage =
+        document.createElement("div");
+
+    databaseMessage.className =
+        "database-message";
+
+    databaseMessage.textContent =
+        "DATABASE RECORD // ACCESS LOGGED";
+
+
+    questionContent.appendChild(
+        databaseMessage
+    );
+
+}
+
+
+/* =========================
+   Q12 效果
+   ========================= */
+
+function playQ12Effect(answer) {
+
+    /*
+       只有选择 C 才触发
+    */
+
+    if (
+        answer !==
+        "C. 优先帮助能够取得最好结果的人"
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+       页面停顿
+    */
+
+    setTimeout(
+        function() {
+
+            showTemporaryMessage(
+                "选择已记录",
+                1000
+            );
+
+
+            /*
+               第一行出现后
+               再出现第二行
+            */
+
+            setTimeout(
+                function() {
+
+                    showSecondMessage(
+                        "倾向性：明确"
+                    );
+
+                },
+                700
+            );
+
+        },
+        500
+    );
+
+}
+
+
+/* =========================
+   Q13 效果
+   ========================= */
+
+function playQ13Effect(answer) {
+
+    let message = "";
+
+
+    if (
+        answer === "A. 经常"
+        ||
+        answer === "B. 偶尔"
+    ) {
+
+        message =
+            "我们完全理解这种压力。";
+
+    }
+
+
+    if (
+        answer === "C. 很少"
+        ||
+        answer === "D. 从未"
+    ) {
+
+        message =
+            "您似乎并不熟悉竞争所带来的压力。";
+
+    }
+
+
+    setTimeout(
+        function() {
+
+            showTemporaryMessage(
+                message,
+                1800
+            );
+
+        },
+        300
+    );
+
+}
+
+
+/* =========================
+   第一行临时提示
+   ========================= */
+
+function showTemporaryMessage(
+    text,
+    duration
+) {
+
+    /*
+       如果已经存在旧提示
+       先删除
+    */
+
+    const old =
+        document.getElementById(
+            "temporaryMessage"
+        );
+
+    if (old) {
+
+        old.remove();
+
+    }
+
+
+    const message =
+        document.createElement("div");
+
+    message.id =
+        "temporaryMessage";
+
+    message.textContent =
+        text;
+
+
+    document.body.appendChild(
+        message
+    );
+
+
+    setTimeout(
+        function() {
+
+            if (
+                message
+                &&
+                message.parentNode
+            ) {
+
+                message.remove();
+
+            }
+
+        },
+        duration
+    );
+
+}
+
+
+/* =========================
+   第二行提示
+   Q12 专用
+   ========================= */
+
+function showSecondMessage(text) {
+
+    const message =
+        document.createElement("div");
+
+    message.id =
+        "secondTemporaryMessage";
+
+    message.textContent =
+        text;
+
+
+    document.body.appendChild(
+        message
+    );
+
+
+    /*
+       两行一起消失
+    */
+
+    setTimeout(
+        function() {
+
+            const first =
+                document.getElementById(
+                    "temporaryMessage"
+                );
+
+
+            const second =
+                document.getElementById(
+                    "secondTemporaryMessage"
+                );
+
+
+            if (first) {
+
+                first.remove();
+
+            }
+
+
+            if (second) {
+
+                second.remove();
+
+            }
+
+        },
+        1000
+    );
+
+}
+
+
+/* =========================
+   下一题
    ========================= */
 
 nextButton.addEventListener(
@@ -1053,14 +1603,18 @@ nextButton.addEventListener(
                 );
 
 
-            answer =
-                input.value.trim();
+            if (input) {
+
+                answer =
+                    input.value.trim();
+
+            }
 
         }
 
 
         /* =====================
-           普通单选题
+           普通单选
            ===================== */
 
         if (
@@ -1084,7 +1638,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           学生档案题
+           学生档案
            ===================== */
 
         if (
@@ -1108,10 +1662,12 @@ nextButton.addEventListener(
 
 
         /* =====================
-           防止空白答案
+           防止空白
            ===================== */
 
-        if (answer === "") {
+        if (
+            answer === ""
+        ) {
 
             alert(
                 "请完成本题后继续。"
@@ -1123,7 +1679,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           删除旧分数
+           删除之前的分数
            ===================== */
 
         if (
@@ -1138,15 +1694,17 @@ nextButton.addEventListener(
 
 
             answers.score -=
-                question.scores[oldAnswer]
+                question.scores[
+                    oldAnswer
+                ]
                 || 0;
 
         }
 
 
-        /*
-           Q11 的旧答案需要单独处理
-        */
+        /* =====================
+           Q11 删除旧分数
+           ===================== */
 
         if (
             question.type === "student"
@@ -1191,20 +1749,24 @@ nextButton.addEventListener(
 
 
         /* =====================
-           增加普通题目分数
+           普通分数
            ===================== */
 
-        if (question.scores) {
+        if (
+            question.scores
+        ) {
 
             answers.score +=
-                question.scores[answer]
+                question.scores[
+                    answer
+                ]
                 || 0;
 
         }
 
 
         /* =====================
-           增加 Q11 学生档案分数
+           Q11 学生分数
            ===================== */
 
         if (
@@ -1235,7 +1797,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           开发阶段查看数据
+           控制台记录
            ===================== */
 
         console.log(
@@ -1245,26 +1807,123 @@ nextButton.addEventListener(
 
 
         /* =====================
-           进入下一题
+           Q6 → Q7
            ===================== */
+
+        if (
+            currentQuestion === 5
+        ) {
+
+            showTemporaryMessage(
+                "选择已记录",
+                800
+            );
+
+        }
+
+
+        /* =====================
+           Q11
+           ===================== */
+
+        if (
+            question.type === "student"
+        ) {
+
+            /*
+               不立即进入 Q12
+
+               先播放：
+               闪屏
+               ↓
+               0.5秒
+               ↓
+               机密档案
+            */
+
+            playQ11SecretEffect();
+
+            return;
+
+        }
+
+
+        /* =====================
+           Q12
+           ===================== */
+
+        if (
+            currentQuestion === 11
+        ) {
+
+            playQ12Effect(
+                answer
+            );
+
+        }
+
+
+        /* =====================
+           Q13
+           ===================== */
+
+        if (
+            currentQuestion === 12
+        ) {
+
+            playQ13Effect(
+                answer
+            );
+
+        }
+
+
+        /* =====================
+           下一题
+           ===================== */
+
+        currentQuestion++;
+
 
         if (
             currentQuestion
             <
-            questions.length - 1
+            questions.length
         ) {
 
-            currentQuestion++;
+            /*
+               给 Q6 → Q7 的提示
+               留一点时间
+            */
 
-            showQuestion();
+            let delay = 0;
+
+
+            if (
+                question.effect === "record"
+            ) {
+
+                delay = 850;
+
+            }
+
+
+            setTimeout(
+                function() {
+
+                    showQuestion();
+
+                },
+                delay
+            );
 
         }
 
         else {
 
-            /* =================
-               暂时结束页面
-               ================= */
+            /*
+               暂时结束
+            */
 
             questionTitle.textContent =
                 "问卷已完成";
