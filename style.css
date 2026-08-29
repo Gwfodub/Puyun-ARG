@@ -1,17 +1,28 @@
+```css
 /* =========================================================
    浦云大学附属中学
-   实习教师招聘调查问卷
+   实习教师招聘调查
    完整 style.css
-   Q1–Q16
    ========================================================= */
 
 
 /* =========================================================
-   1. 页面整体
+   1. 页面
    ========================================================= */
 
+html,
 body {
+
     margin: 0;
+
+    padding: 0;
+
+    min-height: 100%;
+
+}
+
+
+body {
 
     background: #f3f4f6;
 
@@ -29,7 +40,7 @@ body {
 
 
 /* =========================================================
-   2. 问卷主体
+   2. 主体
    ========================================================= */
 
 .survey-container {
@@ -40,20 +51,18 @@ body {
 
     margin: 70px auto;
 
-    background: white;
+    background: #ffffff;
 
     padding: 55px 60px;
 
     box-sizing: border-box;
 
     box-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.08);
+        0 2px 12px
+        rgba(0, 0, 0, 0.08);
 
     text-align: center;
 
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
 }
 
 
@@ -71,12 +80,14 @@ body {
 
     display: block;
 
-    margin: 0 auto 25px auto;
+    margin:
+        0 auto 25px auto;
+
 }
 
 
 /* =========================================================
-   4. 中文校名
+   4. 学校名称
    ========================================================= */
 
 .school-name {
@@ -88,12 +99,9 @@ body {
     letter-spacing: 2px;
 
     margin-bottom: 8px;
+
 }
 
-
-/* =========================================================
-   5. 英文校名
-   ========================================================= */
 
 .school-name-en {
 
@@ -104,11 +112,12 @@ body {
     letter-spacing: 0.8px;
 
     margin-bottom: 35px;
+
 }
 
 
 /* =========================================================
-   6. 问卷标题
+   5. 首页标题
    ========================================================= */
 
 h1 {
@@ -123,12 +132,14 @@ h1 {
 
     padding-top: 25px;
 
-    border-top: 1px solid #d9dde1;
+    border-top:
+        1px solid #d9dde1;
+
 }
 
 
 /* =========================================================
-   7. 问卷说明
+   6. 首页说明
    ========================================================= */
 
 .description {
@@ -138,12 +149,9 @@ h1 {
     line-height: 1.8;
 
     font-size: 15px;
+
 }
 
-
-/* =========================================================
-   8. 注意事项
-   ========================================================= */
 
 .notice {
 
@@ -153,7 +161,8 @@ h1 {
 
     background: #f7f8fa;
 
-    border-left: 3px solid #52606d;
+    border-left:
+        3px solid #52606d;
 
     color: #52606d;
 
@@ -162,18 +171,20 @@ h1 {
     font-size: 14px;
 
     text-align: left;
+
 }
 
 
 /* =========================================================
-   9. 所有按钮
+   7. 按钮
    ========================================================= */
 
 button {
 
     margin-top: 35px;
 
-    padding: 12px 32px;
+    padding:
+        12px 32px;
 
     border: none;
 
@@ -187,8 +198,8 @@ button {
 
     transition:
         opacity 0.2s ease,
-        background 0.2s ease,
-        color 0.2s ease;
+        background 0.2s ease;
+
 }
 
 
@@ -201,15 +212,23 @@ button:hover {
 
 button:disabled {
 
+    opacity: 0.4;
+
     cursor: default;
 
-    opacity: 0.5;
 }
 
 
 /* =========================================================
-   10. 问题页面
+   8. 问题页面
    ========================================================= */
+
+#questionPage {
+
+    text-align: left;
+
+}
+
 
 .question-number {
 
@@ -220,12 +239,7 @@ button:disabled {
     color: #7b8794;
 
     margin-bottom: 25px;
-}
 
-
-#questionPage {
-
-    text-align: left;
 }
 
 
@@ -236,6 +250,7 @@ button:disabled {
     font-weight: normal;
 
     margin-bottom: 35px;
+
 }
 
 
@@ -244,11 +259,12 @@ button:disabled {
     font-size: 16px;
 
     line-height: 1.8;
+
 }
 
 
 /* =========================================================
-   11. 文本输入框
+   9. 文本框
    ========================================================= */
 
 .question-label {
@@ -257,7 +273,6 @@ button:disabled {
 
     margin-bottom: 10px;
 
-    color: #263238;
 }
 
 
@@ -269,40 +284,45 @@ button:disabled {
 
     padding: 12px;
 
-    border: 1px solid #cbd2d9;
+    border:
+        1px solid #cbd2d9;
 
     font-size: 16px;
 
     outline: none;
+
 }
 
 
 .text-input:focus {
 
     border-color: #52606d;
+
 }
 
 
 /* =========================================================
-   12. 普通选项
+   10. 普通选项
    ========================================================= */
 
 .option {
 
     display: block;
 
-    padding: 14px 16px;
+    padding:
+        14px 16px;
 
     margin-bottom: 10px;
 
-    border: 1px solid #d9dde1;
+    border:
+        1px solid #d9dde1;
 
     cursor: pointer;
 
     transition:
         background 0.2s ease,
-        border-color 0.2s ease,
-        opacity 0.2s ease;
+        border-color 0.2s ease;
+
 }
 
 
@@ -321,16 +341,8 @@ button:disabled {
 
 
 /* =========================================================
-   13. 下一题 / 上一题
+   11. 上一题
    ========================================================= */
-
-#nextButton {
-
-    display: block;
-
-    margin-top: 40px;
-}
-
 
 #previousButton {
 
@@ -344,20 +356,28 @@ button:disabled {
 
 
 /* =========================================================
-   14. Q11 学生题
+   12. 下一题
+   ========================================================= */
+
+#nextButton {
+
+    display: inline-block;
+
+    margin-top: 40px;
+
+}
+
+
+/* =========================================================
+   13. Q11
    ========================================================= */
 
 .student-question {
 
     margin-bottom: 25px;
 
-    line-height: 1.8;
 }
 
-
-/* =========================================================
-   15. Q11 学生卡片
-   ========================================================= */
 
 .student-grid {
 
@@ -369,6 +389,7 @@ button:disabled {
     gap: 18px;
 
     margin-top: 20px;
+
 }
 
 
@@ -380,7 +401,8 @@ button:disabled {
 
     padding: 22px;
 
-    border: 1px solid #d8d8d8;
+    border:
+        1px solid #d8d8d8;
 
     background: #ffffff;
 
@@ -390,6 +412,7 @@ button:disabled {
         border-color 0.2s ease,
         box-shadow 0.2s ease,
         transform 0.2s ease;
+
 }
 
 
@@ -398,16 +421,14 @@ button:disabled {
     border-color: #999;
 
     box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.08);
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 
     transform:
         translateY(-2px);
+
 }
 
-
-/* =========================================================
-   16. 隐藏 Q11 radio
-   ========================================================= */
 
 .student-card input[type="radio"] {
 
@@ -416,12 +437,9 @@ button:disabled {
     opacity: 0;
 
     pointer-events: none;
+
 }
 
-
-/* =========================================================
-   17. Q11 已选择
-   ========================================================= */
 
 .student-card.selected {
 
@@ -429,12 +447,9 @@ button:disabled {
 
     box-shadow:
         0 0 0 2px #222;
+
 }
 
-
-/* =========================================================
-   18. Q11 卡片顶部
-   ========================================================= */
 
 .student-header {
 
@@ -445,6 +460,7 @@ button:disabled {
     gap: 12px;
 
     margin-bottom: 10px;
+
 }
 
 
@@ -460,11 +476,11 @@ button:disabled {
 
     height: 30px;
 
-    border: 1px solid #999;
+    border:
+        1px solid #999;
 
     font-weight: bold;
 
-    font-size: 14px;
 }
 
 
@@ -473,12 +489,9 @@ button:disabled {
     font-size: 18px;
 
     font-weight: bold;
+
 }
 
-
-/* =========================================================
-   19. Q11 排名
-   ========================================================= */
 
 .student-rank {
 
@@ -487,12 +500,9 @@ button:disabled {
     font-size: 13px;
 
     color: #666;
+
 }
 
-
-/* =========================================================
-   20. Q11 成绩表
-   ========================================================= */
 
 .student-scores {
 
@@ -501,13 +511,16 @@ button:disabled {
     grid-template-columns:
         repeat(5, 1fr);
 
-    border-top: 1px solid #eee;
+    border-top:
+        1px solid #eee;
 
-    border-bottom: 1px solid #eee;
+    border-bottom:
+        1px solid #eee;
 
     padding: 12px 0;
 
     margin-bottom: 15px;
+
 }
 
 
@@ -522,6 +535,7 @@ button:disabled {
     gap: 5px;
 
     font-size: 12px;
+
 }
 
 
@@ -530,12 +544,9 @@ button:disabled {
     font-size: 15px;
 
     font-weight: bold;
+
 }
 
-
-/* =========================================================
-   21. Q11 AI总结 / 教师备注
-   ========================================================= */
 
 .student-section {
 
@@ -544,6 +555,7 @@ button:disabled {
     font-size: 12px;
 
     line-height: 1.7;
+
 }
 
 
@@ -553,13 +565,8 @@ button:disabled {
 
     margin-bottom: 3px;
 
-    font-size: 12px;
 }
 
-
-/* =========================================================
-   22. Q11 选择提示
-   ========================================================= */
 
 .student-select {
 
@@ -567,24 +574,28 @@ button:disabled {
 
     padding-top: 12px;
 
-    border-top: 1px solid #eee;
+    border-top:
+        1px solid #eee;
 
     font-size: 12px;
 
     color: #777;
+
 }
 
 
-.student-card.selected .student-select {
+.student-card.selected
+.student-select {
 
     color: #111;
 
     font-weight: bold;
+
 }
 
 
 /* =========================================================
-   23. 系统顶部提示
+   14. 普通系统提示
    ========================================================= */
 
 #temporaryMessage {
@@ -598,12 +609,14 @@ button:disabled {
     transform:
         translateX(-50%);
 
-    padding: 10px 22px;
+    padding:
+        10px 22px;
 
     background:
         rgba(255, 255, 255, 0.97);
 
-    border: 1px solid #999;
+    border:
+        1px solid #999;
 
     color: #444;
 
@@ -614,13 +627,11 @@ button:disabled {
     z-index: 9999;
 
     animation:
-        messageAppear 0.2s ease;
+        messageAppear
+        0.2s ease;
+
 }
 
-
-/* =========================================================
-   24. Q12 第二行提示
-   ========================================================= */
 
 #secondTemporaryMessage {
 
@@ -633,7 +644,8 @@ button:disabled {
     transform:
         translateX(-50%);
 
-    padding: 8px 18px;
+    padding:
+        8px 18px;
 
     color: #555;
 
@@ -643,14 +655,8 @@ button:disabled {
 
     z-index: 9999;
 
-    animation:
-        messageAppear 0.2s ease;
 }
 
-
-/* =========================================================
-   25. 提示出现动画
-   ========================================================= */
 
 @keyframes messageAppear {
 
@@ -678,64 +684,36 @@ button:disabled {
 
 
 /* =========================================================
-   26. Q11 闪屏
-   ========================================================= */
-
-#flashScreen {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: white;
-
-    z-index: 99999;
-
-    animation:
-        flashEffect 0.18s linear;
-}
-
-
-@keyframes flashEffect {
-
-    0% {
-
-        opacity: 0;
-
-    }
-
-    40% {
-
-        opacity: 1;
-
-    }
-
-    100% {
-
-        opacity: 1;
-
-    }
-
-}
-
-
-/* =========================================================
-   27. Q11 机密数据库模式
+   15. Q11 黑底绿字
    ========================================================= */
 
 body.secret-mode {
 
-    background: #050805;
+    background: #020402;
 
     color: #55ff55;
+
 }
 
 
+/*
+   非常重要：
+
+   secret-mode 直接作用于整个 body，
+   所以不是只有问卷框变黑，
+   而是整个浏览器页面背景都会变成黑色。
+*/
+
 body.secret-mode .survey-container {
 
-    background: #050805;
+    background: #020402;
 
     color: #55ff55;
+
+    box-shadow:
+        0 0 30px
+        rgba(0, 255, 0, 0.08);
+
 }
 
 
@@ -748,21 +726,26 @@ body.secret-mode #questionTitle {
         monospace;
 
     letter-spacing: 2px;
+
 }
 
 
-body.secret-mode #questionNumber {
+body.secret-mode .question-number {
 
     color: #55ff55;
 
-    font-family:
-        "Courier New",
-        monospace;
+}
+
+
+body.secret-mode #questionContent {
+
+    color: #55ff55;
+
 }
 
 
 /* =========================================================
-   28. Q11 机密警告
+   16. Q11 机密警告
    ========================================================= */
 
 .secret-warning {
@@ -783,11 +766,12 @@ body.secret-mode #questionNumber {
         1px solid #1f7a1f;
 
     padding-bottom: 12px;
+
 }
 
 
 /* =========================================================
-   29. Q11 机密档案
+   17. Q11 机密档案
    ========================================================= */
 
 .secret-grid {
@@ -799,7 +783,6 @@ body.secret-mode #questionNumber {
 
     gap: 18px;
 
-    margin-top: 20px;
 }
 
 
@@ -820,18 +803,20 @@ body.secret-mode #questionNumber {
     box-shadow:
         0 0 8px
         rgba(0, 255, 0, 0.08);
+
 }
 
 
 .secret-student-id {
 
-    color: #399939;
+    color: #359c35;
 
     font-size: 11px;
 
     letter-spacing: 2px;
 
     margin-bottom: 8px;
+
 }
 
 
@@ -844,6 +829,7 @@ body.secret-mode #questionNumber {
     color: #66ff66;
 
     margin-bottom: 15px;
+
 }
 
 
@@ -854,6 +840,7 @@ body.secret-mode #questionNumber {
     color: #45c745;
 
     line-height: 1.7;
+
 }
 
 
@@ -864,6 +851,7 @@ body.secret-mode #questionNumber {
     font-size: 15px;
 
     font-weight: bold;
+
 }
 
 
@@ -880,15 +868,22 @@ body.secret-mode #questionNumber {
     font-size: 11px;
 
     letter-spacing: 1px;
+
 }
 
+
+/* =========================================================
+   18. Q11 机密页面按钮
+   ========================================================= */
 
 body.secret-mode #nextButton,
 body.secret-mode #previousButton {
 
-    background: #050805;
+    background:
+        #020402;
 
-    color: #55ff55;
+    color:
+        #55ff55;
 
     border:
         1px solid #267326;
@@ -896,33 +891,49 @@ body.secret-mode #previousButton {
     font-family:
         "Courier New",
         monospace;
+
+}
+
+
+body.secret-mode #nextButton:hover,
+body.secret-mode #previousButton:hover {
+
+    background:
+        #071107;
+
+    opacity: 1;
+
 }
 
 
 /* =========================================================
-   30. Q15 页面
+   19. Q15
    ========================================================= */
 
 .q15-container {
 
     width: 100%;
+
 }
 
 
 .q15-sentence {
 
-    margin: 0 0 22px 0;
+    margin:
+        0 0 22px 0;
 
     line-height: 2;
 
     transition:
         opacity 0.8s ease;
+
 }
 
 
 .q15-options {
 
     margin-top: 35px;
+
 }
 
 
@@ -933,335 +944,279 @@ body.secret-mode #previousButton {
     line-height: 2;
 
     margin-bottom: 30px;
+
 }
 
 
 /* =========================================================
-   31. Q15 第一次拒绝
+   20. Q15 第一次拒绝
    =========================================================
 
-   JS 会在第一次点击“不接受”时：
-   nextButton.style.display = "none"
+   注意：
 
-   这里额外让整个问卷操作区域可以配合隐藏。
+   这里使用 visibility，而不是 display:none。
+
+   这样页面布局不会突然跳动。
 */
 
+body.q15-input-hidden
+.q15-options,
 
-body.q15-input-hidden .q15-options,
-body.q15-input-hidden #nextButton,
-body.q15-input-hidden #previousButton {
+body.q15-input-hidden
+#nextButton,
+
+body.q15-input-hidden
+#previousButton {
 
     visibility: hidden;
+
 }
 
 
 /* =========================================================
-   32. Q15 黑屏
+   21. Q15 第五次：全屏花屏
    ========================================================= */
-
-#q15BlackScreen {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: #000000;
-
-    z-index: 100000;
-
-    pointer-events: all;
-
-    animation:
-        q15BlackAppear 0.12s linear;
-}
-
-
-@keyframes q15BlackAppear {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-
-}
-
-
-/* =========================================================
-   33. Q15 白屏闪烁
-   ========================================================= */
-
-#q15WhiteFlash {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: #ffffff;
-
-    z-index: 100001;
-
-    pointer-events: all;
-
-    animation:
-        q15WhiteFlash 0.3s linear;
-}
-
-
-@keyframes q15WhiteFlash {
-
-    0% {
-        opacity: 0;
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    65% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-
-}
-
-
-/* =========================================================
-   34. Q15 乱码 / 花屏模式
-   =========================================================
-
-   第五次点击“不接受”时：
-
-   页面进入 glitch 模式
-   持续 2 秒
-   然后弹出警告框
-*/
-
 
 body.q15-glitch {
 
-    position: relative;
+    background:
+        #000;
 
-    overflow: hidden;
-}
-
-
-/* ---------------------------------------------------------
-   整个页面轻微抖动
-   --------------------------------------------------------- */
-
-body.q15-glitch .survey-container {
-
-    animation:
-        q15GlitchShake
-        0.08s
-        infinite;
-}
-
-
-@keyframes q15GlitchShake {
-
-    0% {
-        transform:
-            translate(0, 0);
-    }
-
-    20% {
-        transform:
-            translate(-3px, 2px);
-    }
-
-    40% {
-        transform:
-            translate(3px, -2px);
-    }
-
-    60% {
-        transform:
-            translate(-2px, -1px);
-    }
-
-    80% {
-        transform:
-            translate(2px, 2px);
-    }
-
-    100% {
-        transform:
-            translate(0, 0);
-    }
+    overflow:
+        hidden;
 
 }
 
 
-/* =========================================================
-   35. Q15 乱码覆盖层
-   ========================================================= */
+/*
+   整个浏览器视口的乱码层
+*/
 
 body.q15-glitch::before {
 
     content:
-        "ERROR 404  SYSTEM FAILURE  ▓▒░ 01 10 01  SYSTEM FAILURE  "
-        "R4N7D0M  ERROR  ███  010101  CONNECTION LOST  "
-        "浦云大学附属中学  ERROR  0x0000  "
-        "SYSTEM ERROR  ▓▓▒▒░░  101010  "
-        "DATA CORRUPTED  ERROR  ERROR  ERROR";
+        "SYSTEM ERROR  ███ 010101  ERROR  "
+        "DATA CORRUPTED  ▓▒░ 01 10 01  "
+        "浦云大学附属中学  ERROR  "
+        "ACCESS DENIED  0x0000  "
+        "SYSTEM FAILURE  "
+        "ERROR ERROR ERROR  "
+        "010101010101  "
+        "DATA LOST  "
+        "R4N7D0M  "
+        "████████  "
+        "SYSTEM FAILURE  "
+        "ERROR 404  "
+        "CORRUPTED DATA  "
+        "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒";
 
-    position: fixed;
+    position:
+        fixed;
 
-    inset: -20%;
+    top:
+        -30%;
 
-    z-index: 99990;
+    left:
+        -30%;
 
-    pointer-events: none;
+    width:
+        160%;
+
+    height:
+        160%;
+
+    z-index:
+        99990;
+
+    pointer-events:
+        none;
 
     font-family:
         "Courier New",
         monospace;
 
-    font-size: 22px;
+    font-size:
+        25px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    line-height: 1.2;
+    line-height:
+        1.15;
 
-    word-break: break-all;
+    letter-spacing:
+        4px;
 
-    letter-spacing: 4px;
+    word-break:
+        break-all;
 
-    color: rgba(255, 0, 0, 0.22);
+    color:
+        rgba(255, 0, 0, 0.32);
 
     background:
         repeating-linear-gradient(
             0deg,
-            rgba(0, 0, 0, 0.05),
-            rgba(0, 0, 0, 0.05) 2px,
-            rgba(255, 255, 255, 0.05) 3px,
-            rgba(255, 255, 255, 0.05) 5px
+            rgba(0, 0, 0, 0.0),
+            rgba(0, 0, 0, 0.0) 4px,
+            rgba(255, 0, 0, 0.09) 5px,
+            rgba(255, 255, 255, 0.05) 7px
         );
 
     transform:
         rotate(-3deg)
-        scale(1.2);
+        scale(1.1);
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
     animation:
         q15GlitchText
-        0.09s
+        0.08s
         infinite;
+
 }
 
+
+/* =========================================================
+   22. Q15 全屏扫描线
+   ========================================================= */
+
+body.q15-glitch::after {
+
+    content:
+        "";
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        99991;
+
+    pointer-events:
+        none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 5px,
+            rgba(255, 0, 0, 0.12) 6px,
+            transparent 8px
+        );
+
+    animation:
+        q15Scanline
+        0.1s
+        infinite;
+
+}
+
+
+/* =========================================================
+   23. 花屏文字运动
+   ========================================================= */
 
 @keyframes q15GlitchText {
 
     0% {
 
         transform:
-            translate(0, 0)
+            translate(
+                0,
+                0
+            )
             rotate(-3deg)
-            scale(1.2);
+            scale(1.1);
 
         filter:
-            blur(0px);
+            blur(0);
+
     }
 
     20% {
 
         transform:
-            translate(-12px, 5px)
+            translate(
+                -15px,
+                8px
+            )
             rotate(-2deg)
-            scale(1.22);
+            scale(1.13);
 
         filter:
             blur(1px);
+
     }
 
     40% {
 
         transform:
-            translate(8px, -8px)
+            translate(
+                12px,
+                -10px
+            )
             rotate(-4deg)
-            scale(1.18);
+            scale(1.08);
 
         filter:
-            blur(0px);
+            blur(0);
+
     }
 
     60% {
 
         transform:
-            translate(-5px, 10px)
+            translate(
+                -8px,
+                12px
+            )
             rotate(-2deg)
-            scale(1.25);
+            scale(1.15);
 
         filter:
             blur(2px);
+
     }
 
     80% {
 
         transform:
-            translate(14px, -4px)
+            translate(
+                16px,
+                -5px
+            )
             rotate(-3deg)
-            scale(1.19);
+            scale(1.09);
 
         filter:
-            blur(0px);
+            blur(0);
+
     }
 
     100% {
 
         transform:
-            translate(0, 0)
+            translate(
+                0,
+                0
+            )
             rotate(-3deg)
-            scale(1.2);
+            scale(1.1);
 
         filter:
-            blur(0px);
+            blur(0);
+
     }
 
 }
 
 
 /* =========================================================
-   36. Q15 乱码横向色块
+   24. 扫描线
    ========================================================= */
-
-body.q15-glitch::after {
-
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 99991;
-
-    pointer-events: none;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            transparent 0px,
-            transparent 7px,
-            rgba(255, 0, 0, 0.10) 8px,
-            transparent 11px
-        );
-
-    mix-blend-mode: difference;
-
-    animation:
-        q15Scanline
-        0.12s
-        infinite;
-}
-
 
 @keyframes q15Scanline {
 
@@ -1269,257 +1224,403 @@ body.q15-glitch::after {
 
         transform:
             translateY(0);
+
     }
 
     50% {
 
         transform:
-            translateY(7px);
+            translateY(8px);
+
     }
 
     100% {
 
         transform:
             translateY(0);
+
     }
 
 }
 
 
 /* =========================================================
-   37. Q15 警告弹窗
+   25. 花屏期间内容隐藏一点
+   ========================================================= */
+
+body.q15-glitch .survey-container {
+
+    animation:
+        q15ContainerShake
+        0.06s
+        infinite;
+
+}
+
+
+body.q15-glitch #nextButton,
+body.q15-glitch #previousButton,
+body.q15-glitch .option {
+
+    pointer-events:
+        none;
+
+}
+
+
+@keyframes q15ContainerShake {
+
+    0% {
+
+        transform:
+            translate(
+                0,
+                0
+            );
+
+    }
+
+    25% {
+
+        transform:
+            translate(
+                -3px,
+                2px
+            );
+
+    }
+
+    50% {
+
+        transform:
+            translate(
+                3px,
+                -2px
+            );
+
+    }
+
+    75% {
+
+        transform:
+            translate(
+                -2px,
+                -1px
+            );
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                0,
+                0
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   26. Q15 弹窗遮罩
    ========================================================= */
 
 #q15Overlay {
 
-    position: fixed;
+    position:
+        fixed;
 
-    inset: 0;
+    inset:
+        0;
 
-    z-index: 200000;
+    width:
+        100vw;
 
-    display: flex;
+    height:
+        100vh;
 
-    align-items: center;
+    z-index:
+        200000;
 
-    justify-content: center;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
 
     background:
-        rgba(0, 0, 0, 0.78);
+        rgba(
+            0,
+            0,
+            0,
+            0.82
+        );
 
-    animation:
-        q15OverlayAppear
-        0.25s
-        ease;
+    box-sizing:
+        border-box;
+
 }
 
 
 /* =========================================================
-   38. Q15 黑底红字警告框
+   27. Q15 黑底红框弹窗
    ========================================================= */
 
 .q15-warning-box {
 
-    width: 460px;
+    position:
+        relative;
 
-    max-width: 85%;
+    width:
+        460px;
 
-    box-sizing: border-box;
+    max-width:
+        calc(100vw - 40px);
 
-    padding: 40px 35px 32px 35px;
+    box-sizing:
+        border-box;
 
-    background: #050505;
+    padding:
+        40px 35px 32px 35px;
+
+    background:
+        #000000;
 
     border:
-        1px solid #8b0000;
+        2px solid #ff0000;
 
     box-shadow:
-        0 0 30px
-        rgba(255, 0, 0, 0.25);
+        0 0 25px
+        rgba(
+            255,
+            0,
+            0,
+            0.25
+        );
 
-    text-align: center;
+    text-align:
+        center;
 
-    animation:
-        q15WarningAppear
-        0.3s
-        ease;
 }
 
 
 /* =========================================================
-   39. Q15 警告文字
+   28. Q15 红色警告文字
    ========================================================= */
 
 .q15-warning-text {
 
-    color: #ff2b2b;
+    color:
+        #ff0000;
+
+    background:
+        #000000;
 
     font-family:
         "Microsoft YaHei",
         Arial,
         sans-serif;
 
-    font-size: 20px;
+    font-size:
+        20px;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    line-height: 1.7;
+    line-height:
+        1.7;
 
-    letter-spacing: 1px;
+    letter-spacing:
+        1px;
 
-    text-shadow:
-        0 0 8px
-        rgba(255, 0, 0, 0.45);
 }
 
 
 /* =========================================================
-   40. Q15 弹窗确定按钮
+   29. Q15 红色确定按钮
    ========================================================= */
 
 #q15WarningButton {
 
-    margin-top: 30px;
+    display:
+        inline-block;
+
+    margin-top:
+        30px;
 
     padding:
         10px 35px;
 
-    background: #111111;
+    background:
+        #000000;
 
     border:
-        1px solid #ff2b2b;
+        1px solid #ff0000;
 
-    color: #ff2b2b;
+    color:
+        #ff0000;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.2s ease;
+    opacity:
+        1;
+
 }
 
 
 #q15WarningButton:hover {
 
-    background: #ff2b2b;
+    background:
+        #000000;
 
-    color: #000000;
+    color:
+        #ff3333;
+
+    border-color:
+        #ff3333;
 
     box-shadow:
         0 0 12px
-        rgba(255, 0, 0, 0.45);
+        rgba(
+            255,
+            0,
+            0,
+            0.4
+        );
 
-    opacity: 1;
+    opacity:
+        1;
+
 }
 
 
 /* =========================================================
-   41. Q15 弹窗动画
+   30. Q15 黑屏
    ========================================================= */
 
-@keyframes q15OverlayAppear {
+#q15BlackScreen {
 
-    from {
+    position:
+        fixed;
 
-        opacity: 0;
-    }
+    inset:
+        0;
 
-    to {
+    width:
+        100vw;
 
-        opacity: 1;
-    }
+    height:
+        100vh;
 
-}
+    background:
+        #000000;
 
+    z-index:
+        300000;
 
-@keyframes q15WarningAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.92)
-            translateY(10px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            translateY(0);
-    }
+    pointer-events:
+        all;
 
 }
 
 
 /* =========================================================
-   42. Q15 特殊状态：
-       动画期间禁止操作
+   31. Q15 白屏
    ========================================================= */
 
-body.q15-glitch #nextButton,
-body.q15-glitch #previousButton {
+#q15WhiteFlash {
 
-    pointer-events: none;
+    position:
+        fixed;
 
-    opacity: 0;
+    inset:
+        0;
+
+    width:
+        100vw;
+
+    height:
+        100vh;
+
+    background:
+        #ffffff;
+
+    z-index:
+        300001;
+
+    pointer-events:
+        all;
+
+    animation:
+        q15WhiteFlash
+        0.3s
+        linear;
+
 }
 
 
-body.q15-glitch .option {
+@keyframes q15WhiteFlash {
 
-    pointer-events: none;
+    0% {
+
+        opacity:
+            0;
+
+    }
+
+    15% {
+
+        opacity:
+            1;
+
+    }
+
+    70% {
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+    }
 
 }
 
 
 /* =========================================================
-   43. 手机适配
+   32. 手机
    ========================================================= */
 
 @media (max-width: 700px) {
 
     .survey-container {
 
-        width: 94%;
+        width:
+            94%;
 
-        max-width: 94%;
+        max-width:
+            94%;
 
         margin:
             25px auto;
 
         padding:
             35px 25px;
-    }
 
-
-    .school-name {
-
-        font-size: 26px;
-    }
-
-
-    .school-name-en {
-
-        font-size: 12px;
-    }
-
-
-    h1 {
-
-        font-size: 19px;
-    }
-
-
-    #questionTitle {
-
-        font-size: 20px;
     }
 
 
@@ -1527,6 +1628,7 @@ body.q15-glitch .option {
 
         grid-template-columns:
             1fr;
+
     }
 
 
@@ -1534,28 +1636,49 @@ body.q15-glitch .option {
 
         grid-template-columns:
             1fr;
+
+    }
+
+
+    .school-name {
+
+        font-size:
+            26px;
+
+    }
+
+
+    #questionTitle {
+
+        font-size:
+            20px;
+
     }
 
 
     .q15-warning-box {
 
-        width: 90%;
+        width:
+            calc(100vw - 40px);
 
         padding:
-            32px 22px 26px 22px;
+            30px 22px;
+
     }
 
 
     .q15-warning-text {
 
-        font-size: 17px;
+        font-size:
+            17px;
+
     }
 
 }
 
 
 /* =========================================================
-   44. 更小屏幕
+   33. 小屏幕
    ========================================================= */
 
 @media (max-width: 450px) {
@@ -1564,47 +1687,59 @@ body.q15-glitch .option {
 
         padding:
             28px 18px;
+
     }
 
 
     .school-logo {
 
-        width: 100px;
+        width:
+            100px;
 
-        height: 100px;
+        height:
+            100px;
+
     }
 
 
     .school-name {
 
-        font-size: 23px;
+        font-size:
+            23px;
+
     }
 
 
     .school-name-en {
 
-        font-size: 11px;
+        font-size:
+            11px;
+
     }
 
 
     .student-scores {
 
-        grid-template-columns:
-            repeat(5, 1fr);
+        font-size:
+            10px;
 
-        font-size: 10px;
     }
 
 
     .score-item {
 
-        font-size: 10px;
+        font-size:
+            10px;
+
     }
 
 
     .score-item span:last-child {
 
-        font-size: 13px;
+        font-size:
+            13px;
+
     }
 
 }
+```
