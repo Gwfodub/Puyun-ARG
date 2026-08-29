@@ -178,3 +178,120 @@ button:hover {
     opacity: 0.85;
 
 }
+/* =========================
+   问卷问题页面
+   ========================= */
+
+.question-number {
+
+    text-align: left;
+
+    font-size: 13px;
+
+    color: #7b8794;
+
+    margin-bottom: 25px;
+
+}
+
+
+#questionPage {
+
+    text-align: left;
+
+}
+
+
+#questionTitle {
+
+    font-size: 23px;
+
+    font-weight: normal;
+
+    margin-bottom: 35px;
+
+}
+
+
+#questionContent {
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+}
+
+
+.question-label {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #263238;
+
+}
+
+
+.text-input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid #cbd2d9;
+
+    font-size: 16px;
+
+    outline: none;
+
+}
+
+
+.text-input:focus {
+
+    border-color: #52606d;
+
+}
+
+
+.option {
+
+    display: block;
+
+    padding: 14px 16px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #d9dde1;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+
+}
+
+
+.option:hover {
+
+    background: #f7f8fa;
+
+}
+
+
+.option input {
+
+    margin-right: 10px;
+
+}
+
+
+#nextButton {
+
+    display: block;
+
+    margin-top: 40px;
+
+}
