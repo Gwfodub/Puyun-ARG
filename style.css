@@ -1,3 +1,7 @@
+/* =========================
+   页面整体
+   ========================= */
+
 body {
     margin: 0;
 
@@ -12,52 +16,118 @@ body {
 }
 
 
+/* =========================
+   问卷主体
+   ========================= */
+
 .survey-container {
 
     width: 700px;
 
     max-width: 90%;
 
-    margin: 80px auto;
+    margin: 70px auto;
 
     background: white;
 
-    padding: 50px;
+    padding: 55px 60px;
 
     box-sizing: border-box;
 
     box-shadow:
         0 2px 12px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
 }
 
+
+/* =========================
+   校徽
+   ========================= */
+
+.school-logo {
+
+    width: 130px;
+
+    height: 130px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin: 0 auto 25px auto;
+}
+
+
+/* =========================
+   中文校名
+   ========================= */
 
 .school-name {
 
-    font-size: 14px;
+    font-size: 32px;
 
-    color: #52606d;
+    font-weight: 600;
 
-    margin-bottom: 25px;
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
 }
 
+
+/* =========================
+   英文校名
+   ========================= */
+
+.school-name-en {
+
+    font-size: 15px;
+
+    color: #66727d;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   问卷标题
+   ========================= */
 
 h1 {
 
-    font-size: 24px;
+    font-size: 22px;
 
     font-weight: normal;
 
+    margin-top: 0;
+
     margin-bottom: 25px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #d9dde1;
 }
 
+
+/* =========================
+   问卷说明
+   ========================= */
 
 .description {
 
     color: #52606d;
 
     line-height: 1.8;
+
+    font-size: 15px;
 }
 
+
+/* =========================
+   注意事项
+   ========================= */
 
 .notice {
 
@@ -74,8 +144,14 @@ h1 {
     line-height: 1.8;
 
     font-size: 14px;
+
+    text-align: left;
 }
 
+
+/* =========================
+   开始按钮
+   ========================= */
 
 button {
 
@@ -92,6 +168,8 @@ button {
     font-size: 15px;
 
     cursor: pointer;
+
+    transition: opacity 0.2s ease;
 }
 
 
