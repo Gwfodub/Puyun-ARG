@@ -1,7 +1,7 @@
 /* =========================================================
    浦云大学附属中学
    实习教师招聘调查
-   完整 CSS
+   完整 style.css
    ========================================================= */
 
 
@@ -9,20 +9,10 @@
    页面整体
    ========================================================= */
 
-* {
-    box-sizing: border-box;
-}
-
-
-html,
 body {
+
     margin: 0;
-    padding: 0;
-    min-height: 100%;
-}
 
-
-body {
     background: #f3f4f6;
 
     font-family:
@@ -33,13 +23,13 @@ body {
     color: #263238;
 
     transition:
-        background 0.2s ease,
-        color 0.2s ease;
+        background 0.3s ease,
+        color 0.3s ease;
 }
 
 
 /* =========================================================
-   主体
+   问卷主体
    ========================================================= */
 
 .survey-container {
@@ -50,14 +40,18 @@ body {
 
     margin: 70px auto;
 
-    background: #ffffff;
+    background: white;
 
     padding: 55px 60px;
 
+    box-sizing: border-box;
+
     box-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.08);
+        0 2px 12px
+        rgba(0, 0, 0, 0.08);
 
     text-align: center;
+
 }
 
 
@@ -75,12 +69,14 @@ body {
 
     display: block;
 
-    margin: 0 auto 25px auto;
+    margin:
+        0 auto 25px auto;
+
 }
 
 
 /* =========================================================
-   中文校名
+   校名
    ========================================================= */
 
 .school-name {
@@ -92,12 +88,9 @@ body {
     letter-spacing: 2px;
 
     margin-bottom: 8px;
+
 }
 
-
-/* =========================================================
-   英文校名
-   ========================================================= */
 
 .school-name-en {
 
@@ -108,11 +101,12 @@ body {
     letter-spacing: 0.8px;
 
     margin-bottom: 35px;
+
 }
 
 
 /* =========================================================
-   首页标题
+   标题
    ========================================================= */
 
 h1 {
@@ -129,12 +123,9 @@ h1 {
 
     border-top:
         1px solid #d9dde1;
+
 }
 
-
-/* =========================================================
-   首页说明
-   ========================================================= */
 
 .description {
 
@@ -143,12 +134,9 @@ h1 {
     line-height: 1.8;
 
     font-size: 15px;
+
 }
 
-
-/* =========================================================
-   注意事项
-   ========================================================= */
 
 .notice {
 
@@ -168,6 +156,7 @@ h1 {
     font-size: 14px;
 
     text-align: left;
+
 }
 
 
@@ -179,13 +168,14 @@ button {
 
     margin-top: 35px;
 
-    padding: 12px 32px;
+    padding:
+        12px 32px;
 
     border: none;
 
     background: #263238;
 
-    color: #ffffff;
+    color: white;
 
     font-size: 15px;
 
@@ -194,12 +184,14 @@ button {
     transition:
         opacity 0.2s ease,
         background 0.2s ease;
+
 }
 
 
 button:hover {
 
     opacity: 0.85;
+
 }
 
 
@@ -210,6 +202,7 @@ button:hover {
 #questionPage {
 
     text-align: left;
+
 }
 
 
@@ -222,6 +215,7 @@ button:hover {
     color: #7b8794;
 
     margin-bottom: 25px;
+
 }
 
 
@@ -232,6 +226,7 @@ button:hover {
     font-weight: normal;
 
     margin-bottom: 35px;
+
 }
 
 
@@ -240,6 +235,7 @@ button:hover {
     font-size: 16px;
 
     line-height: 1.8;
+
 }
 
 
@@ -252,12 +248,15 @@ button:hover {
     display: block;
 
     margin-bottom: 10px;
+
 }
 
 
 .text-input {
 
     width: 100%;
+
+    box-sizing: border-box;
 
     padding: 12px;
 
@@ -267,12 +266,14 @@ button:hover {
     font-size: 16px;
 
     outline: none;
+
 }
 
 
 .text-input:focus {
 
     border-color: #52606d;
+
 }
 
 
@@ -284,7 +285,8 @@ button:hover {
 
     display: block;
 
-    padding: 14px 16px;
+    padding:
+        14px 16px;
 
     margin-bottom: 10px;
 
@@ -296,6 +298,7 @@ button:hover {
     transition:
         background 0.2s ease,
         border-color 0.2s ease;
+
 }
 
 
@@ -309,14 +312,14 @@ button:hover {
 .option input {
 
     margin-right: 10px;
+
 }
 
 
 /* =========================================================
-   下一题 / 上一题
+   上一题
    ========================================================= */
 
-#nextButton,
 #previousButton {
 
     display: inline-block;
@@ -326,19 +329,8 @@ button:hover {
 }
 
 
-#previousButton {
-
-    background: #ffffff;
-
-    color: #263238;
-
-    border:
-        1px solid #263238;
-}
-
-
 /* =========================================================
-   Q11
+   Q11 学生问题
    ========================================================= */
 
 .student-question {
@@ -346,8 +338,13 @@ button:hover {
     margin-bottom: 25px;
 
     line-height: 1.8;
+
 }
 
+
+/* =========================================================
+   Q11 学生卡片
+   ========================================================= */
 
 .student-grid {
 
@@ -359,6 +356,7 @@ button:hover {
     gap: 18px;
 
     margin-top: 20px;
+
 }
 
 
@@ -373,7 +371,7 @@ button:hover {
     border:
         1px solid #d8d8d8;
 
-    background: #ffffff;
+    background: white;
 
     cursor: pointer;
 
@@ -381,6 +379,7 @@ button:hover {
         border-color 0.2s ease,
         box-shadow 0.2s ease,
         transform 0.2s ease;
+
 }
 
 
@@ -394,6 +393,7 @@ button:hover {
 
     transform:
         translateY(-2px);
+
 }
 
 
@@ -404,6 +404,7 @@ button:hover {
     opacity: 0;
 
     pointer-events: none;
+
 }
 
 
@@ -413,8 +414,13 @@ button:hover {
 
     box-shadow:
         0 0 0 2px #222;
+
 }
 
+
+/* =========================================================
+   学生卡片顶部
+   ========================================================= */
 
 .student-header {
 
@@ -425,6 +431,7 @@ button:hover {
     gap: 12px;
 
     margin-bottom: 10px;
+
 }
 
 
@@ -446,6 +453,7 @@ button:hover {
     font-weight: bold;
 
     font-size: 14px;
+
 }
 
 
@@ -454,6 +462,7 @@ button:hover {
     font-size: 18px;
 
     font-weight: bold;
+
 }
 
 
@@ -464,8 +473,13 @@ button:hover {
     font-size: 13px;
 
     color: #666;
+
 }
 
+
+/* =========================================================
+   成绩
+   ========================================================= */
 
 .student-scores {
 
@@ -483,6 +497,7 @@ button:hover {
     padding: 12px 0;
 
     margin-bottom: 15px;
+
 }
 
 
@@ -497,6 +512,7 @@ button:hover {
     gap: 5px;
 
     font-size: 12px;
+
 }
 
 
@@ -505,8 +521,13 @@ button:hover {
     font-size: 15px;
 
     font-weight: bold;
+
 }
 
+
+/* =========================================================
+   学生信息
+   ========================================================= */
 
 .student-section {
 
@@ -515,6 +536,7 @@ button:hover {
     font-size: 12px;
 
     line-height: 1.7;
+
 }
 
 
@@ -523,6 +545,9 @@ button:hover {
     display: block;
 
     margin-bottom: 3px;
+
+    font-size: 12px;
+
 }
 
 
@@ -538,6 +563,7 @@ button:hover {
     font-size: 12px;
 
     color: #777;
+
 }
 
 
@@ -547,11 +573,12 @@ button:hover {
     color: #111;
 
     font-weight: bold;
+
 }
 
 
 /* =========================================================
-   临时提示
+   系统提示
    ========================================================= */
 
 #temporaryMessage {
@@ -580,34 +607,11 @@ button:hover {
 
     letter-spacing: 1px;
 
-    z-index: 9999;
+    z-index: 99999;
 
     animation:
         messageAppear 0.2s ease;
-}
 
-
-#secondTemporaryMessage {
-
-    position: fixed;
-
-    top: 61px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    padding:
-        8px 18px;
-
-    color: #555;
-
-    font-size: 12px;
-
-    letter-spacing: 1px;
-
-    z-index: 9999;
 }
 
 
@@ -632,11 +636,12 @@ button:hover {
             translateY(0);
 
     }
+
 }
 
 
 /* =========================================================
-   Q11 黑底绿色机密模式
+   Q11 黑底绿色数据库模式
    ========================================================= */
 
 body.secret-mode {
@@ -658,6 +663,7 @@ body.secret-mode
     box-shadow:
         0 0 30px
         rgba(0, 255, 0, 0.08);
+
 }
 
 
@@ -671,13 +677,18 @@ body.secret-mode
         monospace;
 
     letter-spacing: 2px;
+
 }
 
 
 body.secret-mode
-.question-number {
+#questionNumber {
 
     color: #55ff55;
+
+    font-family:
+        "Courier New",
+        monospace;
 
 }
 
@@ -686,6 +697,26 @@ body.secret-mode
 #questionContent {
 
     color: #55ff55;
+
+}
+
+
+body.secret-mode
+#nextButton,
+
+body.secret-mode
+#previousButton {
+
+    background: #050805;
+
+    color: #55ff55;
+
+    border:
+        1px solid #267326;
+
+    font-family:
+        "Courier New",
+        monospace;
 
 }
 
@@ -712,6 +743,7 @@ body.secret-mode
         1px solid #1f7a1f;
 
     padding-bottom: 12px;
+
 }
 
 
@@ -729,6 +761,7 @@ body.secret-mode
     gap: 18px;
 
     margin-top: 20px;
+
 }
 
 
@@ -749,18 +782,18 @@ body.secret-mode
     box-shadow:
         0 0 8px
         rgba(0, 255, 0, 0.08);
+
 }
 
 
 .secret-student-id {
 
-    color: #39c739;
+    color: #45c745;
 
     font-size: 12px;
 
-    letter-spacing: 2px;
-
     margin-bottom: 8px;
+
 }
 
 
@@ -773,6 +806,7 @@ body.secret-mode
     color: #66ff66;
 
     margin-bottom: 15px;
+
 }
 
 
@@ -782,9 +816,8 @@ body.secret-mode
 
     color: #45c745;
 
-    line-height: 1.7;
+    line-height: 1.8;
 
-    margin-top: 10px;
 }
 
 
@@ -796,7 +829,8 @@ body.secret-mode
 
     font-weight: bold;
 
-    margin-top: 2px;
+    margin-top: 5px;
+
 }
 
 
@@ -813,42 +847,7 @@ body.secret-mode
     font-size: 11px;
 
     letter-spacing: 1px;
-}
 
-
-/* =========================================================
-   Q11 机密模式按钮
-   ========================================================= */
-
-body.secret-mode
-#nextButton {
-
-    background: #050805;
-
-    color: #55ff55;
-
-    border:
-        1px solid #267326;
-
-    font-family:
-        "Courier New",
-        monospace;
-}
-
-
-body.secret-mode
-#previousButton {
-
-    background: #050805;
-
-    color: #55ff55;
-
-    border:
-        1px solid #267326;
-
-    font-family:
-        "Courier New",
-        monospace;
 }
 
 
@@ -859,38 +858,68 @@ body.secret-mode
 .q15-container {
 
     width: 100%;
+
 }
 
 
 .q15-sentence {
 
-    margin-bottom: 25px;
+    margin:
+        0 0 25px 0;
 
-    opacity: 0;
+    line-height: 2;
 
-    transition:
-        opacity 0.8s ease;
 }
 
 
 .q15-options {
 
-    margin-top: 35px;
+    margin-top: 30px;
+
 }
 
 
 .q15-forced-question {
 
-    font-size: 17px;
-
     line-height: 2;
 
     margin-bottom: 30px;
+
 }
 
 
 /* =========================================================
-   Q15 全屏乱码
+   Q15 黑屏
+   ========================================================= */
+
+#q15BlackScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #000;
+
+    z-index: 999999;
+
+}
+
+
+#q15WhiteFlash {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: white;
+
+    z-index: 1000000;
+
+}
+
+
+/* =========================================================
+   Q15 第五次乱码覆盖层
    ========================================================= */
 
 #q15GlitchOverlay {
@@ -905,89 +934,123 @@ body.secret-mode
 
     overflow: hidden;
 
-    z-index: 999999;
+    background:
+        #000;
 
-    background: #000000;
+    z-index: 999998;
 
-    color: #ff0000;
+    pointer-events: all;
+
+}
+
+
+/* =========================================================
+   乱码
+   ========================================================= */
+
+.glitch-character {
+
+    position: absolute;
+
+    color: #222;
 
     font-family:
         "Courier New",
         monospace;
 
-    font-size: 13px;
+    font-weight: bold;
 
-    line-height: 1;
-
-    white-space: pre-wrap;
-
-    word-break: break-all;
-
-    padding: 0;
-
-    margin: 0;
-
-    pointer-events: all;
+    white-space: nowrap;
 
     animation:
-        glitchScreen 0.08s
-        infinite;
+        glitchFlicker
+        0.08s
+        infinite alternate;
+
 }
 
 
-@keyframes glitchScreen {
+@keyframes glitchFlicker {
 
-    0% {
+    from {
+
+        opacity: 0.2;
 
         transform:
-            translate(0, 0);
+            translateX(-4px);
+
+    }
+
+    to {
 
         opacity: 1;
 
-    }
-
-    20% {
-
         transform:
-            translate(-3px, 2px);
+            translateX(4px);
 
     }
 
-    40% {
-
-        transform:
-            translate(3px, -1px);
-
-    }
-
-    60% {
-
-        transform:
-            translate(-2px, -2px);
-
-    }
-
-    80% {
-
-        transform:
-            translate(2px, 1px);
-
-    }
-
-    100% {
-
-        transform:
-            translate(0, 0);
-
-    }
 }
 
 
 /* =========================================================
-   Q15 弹窗遮罩
+   「对不起」
    ========================================================= */
 
-#q15Overlay {
+.glitch-apology {
+
+    position: absolute;
+
+    color: #ff2020;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    font-family:
+        "Microsoft YaHei",
+        sans-serif;
+
+    text-shadow:
+        0 0 8px
+        rgba(255, 0, 0, 0.7);
+
+    animation:
+        apologyGlitch
+        0.12s
+        infinite alternate;
+
+}
+
+
+@keyframes apologyGlitch {
+
+    from {
+
+        opacity: 0.25;
+
+        filter:
+            blur(1px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        filter:
+            blur(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   Q15 中央警告弹窗
+   ========================================================= */
+
+#q15WarningOverlay {
 
     position: fixed;
 
@@ -1003,154 +1066,92 @@ body.secret-mode
 
     justify-content: center;
 
-    z-index: 1000000;
-
     background:
-        rgba(0, 0, 0, 0.88);
+        rgba(0, 0, 0, 0.92);
 
-    margin: 0;
+    z-index: 1000001;
 
-    padding: 20px;
 }
 
 
 /* =========================================================
-   Q15 黑底红边弹窗
+   弹窗主体
    ========================================================= */
 
 .q15-warning-box {
 
-    width: 520px;
+    width: 440px;
 
-    max-width: 90vw;
+    max-width: 80vw;
 
-    min-height: 190px;
+    box-sizing: border-box;
 
-    background: #000000;
+    padding: 35px 30px;
+
+    background: #000;
 
     border:
-        2px solid #ff0000;
+        2px solid #ff2020;
 
     box-shadow:
-        0 0 35px
+        0 0 30px
         rgba(255, 0, 0, 0.35);
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 40px 35px;
 
     text-align: center;
 
-    color: #ff0000;
 }
 
 
 /* =========================================================
-   Q15 警告文字
+   弹窗红字
    ========================================================= */
 
 .q15-warning-text {
 
-    background: #000000;
+    color: #ff2020;
 
-    color: #ff0000;
+    font-size: 18px;
 
-    font-family:
-        "Microsoft YaHei",
-        Arial,
-        sans-serif;
+    line-height: 1.8;
 
-    font-size: 20px;
+    font-weight: bold;
 
-    line-height: 1.7;
+    letter-spacing: 1px;
 
-    margin-bottom: 30px;
-
-    padding: 0;
 }
 
 
 /* =========================================================
-   Q15 确认按钮
+   弹窗按钮
    ========================================================= */
 
 #q15WarningButton {
 
-    margin-top: 0;
+    margin-top: 30px;
 
     padding:
         10px 35px;
 
-    background: #000000;
+    background: #000;
 
-    color: #ff0000;
+    color: #ff2020;
 
     border:
-        1px solid #ff0000;
+        1px solid #ff2020;
 
-    font-size: 15px;
+    font-size: 14px;
 
     cursor: pointer;
 
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
 }
 
 
 #q15WarningButton:hover {
 
-    background: #ff0000;
+    background: #160000;
 
-    color: #000000;
+    color: #ff4040;
 
-    opacity: 1;
-}
-
-
-/* =========================================================
-   Q15 接受后的黑屏
-   ========================================================= */
-
-#q15BlackScreen {
-
-    position: fixed;
-
-    inset: 0;
-
-    width: 100vw;
-
-    height: 100vh;
-
-    background: #000000;
-
-    z-index: 999998;
-}
-
-
-/* =========================================================
-   Q15 接受后的白屏
-   ========================================================= */
-
-#q15WhiteFlash {
-
-    position: fixed;
-
-    inset: 0;
-
-    width: 100vw;
-
-    height: 100vh;
-
-    background: #ffffff;
-
-    z-index: 999999;
 }
 
 
@@ -1164,29 +1165,18 @@ body.secret-mode
 
         width: 94%;
 
-        max-width: 94%;
+        padding:
+            35px 25px;
 
         margin:
             30px auto;
-
-        padding:
-            35px 25px;
 
     }
 
 
     .school-name {
 
-        font-size: 26px;
-
-    }
-
-
-    .school-logo {
-
-        width: 100px;
-
-        height: 100px;
+        font-size: 25px;
 
     }
 
@@ -1209,17 +1199,24 @@ body.secret-mode
 
     .q15-warning-box {
 
-        width: 90vw;
+        width: 90%;
 
         padding:
-            30px 20px;
+            28px 20px;
 
     }
 
 
     .q15-warning-text {
 
-        font-size: 17px;
+        font-size: 16px;
+
+    }
+
+
+    .glitch-apology {
+
+        font-size: 30px;
 
     }
 
