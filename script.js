@@ -17,9 +17,7 @@ const questions = [
 
     {
         title: "基本信息",
-
         type: "text",
-
         question: "请输入您的姓名："
     },
 
@@ -30,9 +28,7 @@ const questions = [
 
     {
         title: "基本信息",
-
         type: "text",
-
         question: "请输入您的年龄："
     },
 
@@ -43,11 +39,8 @@ const questions = [
 
     {
         title: "基本信息",
-
         type: "radio",
-
         question: "您的最高学历是：",
-
         options: [
             "本科",
             "硕士研究生",
@@ -62,9 +55,7 @@ const questions = [
 
     {
         title: "基本信息",
-
         type: "text",
-
         question: "请输入您的专业："
     },
 
@@ -75,11 +66,8 @@ const questions = [
 
     {
         title: "教学经历",
-
         type: "radio",
-
         question: "您是否具有教学经验？",
-
         options: [
             "有",
             "没有"
@@ -100,17 +88,11 @@ const questions = [
             "您认为，一名优秀的学生最重要的品质是什么？",
 
         options: [
-
             "A. 良好的学习成绩",
-
             "B. 持续努力的能力",
-
             "C. 独立思考与解决问题的能力",
-
             "D. 良好的品格与合作能力",
-
             "E. 以上都很重要"
-
         ],
 
         /* 隐藏评分 */
@@ -314,20 +296,15 @@ let currentQuestion = 0;
    ========================= */
 
 /*
-   answers 中：
+   answers：
 
    0 = Q1
    1 = Q2
    2 = Q3
-   3 = Q4
-   4 = Q5
-   5 = Q6
-   6 = Q7
-   7 = Q8
-   8 = Q9
+   ...
    9 = Q10
 
-   score = 隐藏总分
+   score = 当前隐藏总分
 */
 
 const answers = {
@@ -364,6 +341,40 @@ const questionContent =
 
 
 /* =========================
+   创建“上一题”按钮
+   ========================= */
+
+/*
+   不需要修改 HTML。
+   JavaScript 会自动创建按钮。
+*/
+
+const previousButton =
+    document.createElement("button");
+
+previousButton.id =
+    "previousButton";
+
+previousButton.textContent =
+    "上一题";
+
+
+previousButton.style.display =
+    "none";
+
+
+/*
+   把“上一题”按钮放到
+   “下一题”按钮前面
+*/
+
+nextButton.parentNode.insertBefore(
+    previousButton,
+    nextButton
+);
+
+
+/* =========================
    开始问卷
    ========================= */
 
@@ -371,9 +382,11 @@ startButton.addEventListener(
     "click",
     function() {
 
-        welcomePage.style.display = "none";
+        welcomePage.style.display =
+            "none";
 
-        questionPage.style.display = "block";
+        questionPage.style.display =
+            "block";
 
         showQuestion();
 
@@ -443,6 +456,22 @@ function showQuestion() {
             "answer";
 
 
+        /*
+           如果玩家之前已经填写过，
+           返回时恢复之前的答案。
+        */
+
+        if (
+            answers[currentQuestion]
+            !== undefined
+        ) {
+
+            input.value =
+                answers[currentQuestion];
+
+        }
+
+
         questionContent.appendChild(
             label
         );
@@ -485,12 +514,30 @@ function showQuestion() {
                 const radio =
                     document.createElement("input");
 
-                radio.type = "radio";
+                radio.type =
+                    "radio";
 
-                radio.name = "answer";
+                radio.name =
+                    "answer";
 
                 radio.value =
                     optionText;
+
+
+                /*
+                   如果玩家之前已经选择过，
+                   返回时自动恢复选择。
+                */
+
+                if (
+                    answers[currentQuestion]
+                    === optionText
+                ) {
+
+                    radio.checked =
+                        true;
+
+                }
 
 
                 label.appendChild(
@@ -514,11 +561,92 @@ function showQuestion() {
 
     }
 
+
+    /* =====================
+       控制“上一题”按钮
+       ===================== */
+
+    if (currentQuestion === 0) {
+
+        previousButton.style.display =
+            "none";
+
+    }
+
+    else {
+
+        previousButton.style.display =
+            "inline-block";
+
+    }
+
+
+    /* =====================
+       控制“下一题”按钮文字
+       ===================== */
+
+    nextButton.style.display =
+        "inline-block";
+
+
+    if (
+        currentQuestion
+        === questions.length - 1
+    ) {
+
+        nextButton.textContent =
+            "提交";
+
+    }
+
+    else {
+
+        nextButton.textContent =
+            "下一题";
+
+    }
+
 }
 
 
 /* =========================
-   下一题
+   上一题
+   ========================= */
+
+previousButton.addEventListener(
+    "click",
+    function() {
+
+        /*
+           防止返回到问卷开始页面
+        */
+
+        if (currentQuestion <= 0) {
+
+            return;
+
+        }
+
+
+        /*
+           当前问题编号减一
+        */
+
+        currentQuestion--;
+
+
+        /*
+           重新显示上一题
+        */
+
+        showQuestion();
+
+    }
+);
+
+
+/* =========================
+   下一题 / 提交
    ========================= */
 
 nextButton.addEventListener(
@@ -540,10 +668,14 @@ nextButton.addEventListener(
            文本题
            ===================== */
 
-        if (question.type === "text") {
+        if (
+            question.type === "text"
+        ) {
 
             const input =
-                document.getElementById("answer");
+                document.getElementById(
+                    "answer"
+                );
 
 
             answer =
@@ -556,7 +688,9 @@ nextButton.addEventListener(
            单选题
            ===================== */
 
-        if (question.type === "radio") {
+        if (
+            question.type === "radio"
+        ) {
 
             const selected =
                 document.querySelector(
@@ -590,7 +724,30 @@ nextButton.addEventListener(
 
 
         /* =====================
-           保存答案
+           如果之前已经回答过
+           需要先删除旧分数
+           ===================== */
+
+        if (
+            question.scores
+            &&
+            answers[currentQuestion]
+            !== undefined
+        ) {
+
+            const oldAnswer =
+                answers[currentQuestion];
+
+
+            answers.score -=
+                question.scores[oldAnswer]
+                || 0;
+
+        }
+
+
+        /* =====================
+           保存新答案
            ===================== */
 
         answers[currentQuestion] =
@@ -598,13 +755,14 @@ nextButton.addEventListener(
 
 
         /* =====================
-           隐藏评分
+           添加新评分
            ===================== */
 
         if (question.scores) {
 
             answers.score +=
-                question.scores[answer] || 0;
+                question.scores[answer]
+                || 0;
 
         }
 
@@ -620,20 +778,16 @@ nextButton.addEventListener(
 
 
         /* =====================
-           进入下一题
-           ===================== */
-
-        currentQuestion++;
-
-
-        /* =====================
            判断是否还有下一题
            ===================== */
 
         if (
             currentQuestion
-            < questions.length
+            <
+            questions.length - 1
         ) {
+
+            currentQuestion++;
 
             showQuestion();
 
@@ -642,10 +796,7 @@ nextButton.addEventListener(
         else {
 
             /* =================
-               临时结束页面
-
-               后续 Q11–Q16
-               完成后会替换这里。
+               暂时的结束页面
                ================= */
 
             questionTitle.textContent =
@@ -657,6 +808,10 @@ nextButton.addEventListener(
 
 
             nextButton.style.display =
+                "none";
+
+
+            previousButton.style.display =
                 "none";
 
 
