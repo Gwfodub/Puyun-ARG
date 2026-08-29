@@ -1,11 +1,8 @@
 /* =========================================================
    浦云大学附属中学
    实习教师招聘调查问卷
-   完整稳定版 script.js
-
    Q1–Q16
-   Q11：机密数据库
-   Q15：教育理念确认 + 五次拒绝机制
+   稳定版 script.js
    ========================================================= */
 
 
@@ -15,31 +12,17 @@
 
 const questions = [
 
-    /* =========================
-       Q1
-       ========================= */
-
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的姓名："
     },
 
-
-    /* =========================
-       Q2
-       ========================= */
-
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的年龄："
     },
-
-
-    /* =========================
-       Q3
-       ========================= */
 
     {
         title: "基本信息",
@@ -52,21 +35,11 @@ const questions = [
         ]
     },
 
-
-    /* =========================
-       Q4
-       ========================= */
-
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的专业："
     },
-
-
-    /* =========================
-       Q5
-       ========================= */
 
     {
         title: "教学经历",
@@ -78,18 +51,11 @@ const questions = [
         ]
     },
 
-
-    /* =========================
-       Q6
-       ========================= */
-
     {
         title: "教育理念",
         type: "radio",
-
         question:
             "您认为，一名优秀的学生最重要的品质是什么？",
-
         options: [
             "A. 良好的学习成绩",
             "B. 持续努力的能力",
@@ -97,7 +63,6 @@ const questions = [
             "D. 良好的品格与合作能力",
             "E. 以上都很重要"
         ],
-
         scores: {
             "A. 良好的学习成绩": 3,
             "B. 持续努力的能力": 2,
@@ -107,18 +72,11 @@ const questions = [
         }
     },
 
-
-    /* =========================
-       Q7
-       ========================= */
-
     {
         title: "教育理念",
         type: "radio",
-
         question:
             "如果一名学生长期无法达到班级平均成绩，您认为教师首先应该：",
-
         options: [
             "A. 帮助学生寻找适合自己的学习方式",
             "B. 与学生沟通，分析成绩下降的原因",
@@ -126,7 +84,6 @@ const questions = [
             "D. 将更多教学资源投入到能够取得明显成绩提升的学生身上",
             "E. 视情况而定"
         ],
-
         scores: {
             "A. 帮助学生寻找适合自己的学习方式": 0,
             "B. 与学生沟通，分析成绩下降的原因": 1,
@@ -136,28 +93,19 @@ const questions = [
         }
     },
 
-
-    /* =========================
-       Q8
-       ========================= */
-
     {
         title: "学业质量管理",
         type: "radio",
-
         question:
             "浦云大学附属中学实行严格的学业质量管理制度：为确保教学质量及学生学习效率，学校每学年将根据学生的周测、月考及学年期末考试成绩进行综合评价。综合评价排名位于年级后15%的学生，将进入学业调整程序。",
-
         distortedQuestion:
             "浦云大学附属中学实行严格的学业质量管理制度：为确保教学质量及学生学习效率，学校每学年将根据学生的周测、月考及学年期末考试成绩进行综合评价。综合评价排名位于年级后15%的学生，将进行劝退处理。",
-
         options: [
             "A. 可以接受",
             "B. 基本可以接受",
             "C. 需要进一步了解",
             "D. 无法接受"
         ],
-
         scores: {
             "A. 可以接受": 3,
             "B. 基本可以接受": 2,
@@ -166,25 +114,17 @@ const questions = [
         }
     },
 
-
-    /* =========================
-       Q9
-       ========================= */
-
     {
         title: "学业评价标准",
         type: "radio",
-
         question:
             "根据学校学业管理办法，学生需同时满足以下条件，方可完成本学年学业评价：条件一、综合成绩不得位于年级后15%；条件二、任何单一学科不得出现不及格情况。若学生未能满足以上任一条件，将进入学业调整程序。您认为这一标准：",
-
         options: [
             "A. 合理",
             "B. 基本合理",
             "C. 较为严格，但可以理解",
             "D. 过于严格"
         ],
-
         scores: {
             "A. 合理": 3,
             "B. 基本合理": 2,
@@ -193,25 +133,17 @@ const questions = [
         }
     },
 
-
-    /* =========================
-       Q10
-       ========================= */
-
     {
         title: "教师绩效管理",
         type: "radio",
-
         question:
             "为保证教学质量，学校对实习及正式教师均实行严格的教学绩效评价制度。教师的绩效评价将综合考虑：班级考试成绩、年级排名、学生成绩提升幅度、教学任务完成情况、学生管理情况。若教师所负责班级连续两次在年级排名中处于末位，学校将终止其聘用关系。您是否能够接受上述教师绩效管理制度？",
-
         options: [
             "A. 可以",
             "B. 基本可以",
             "C. 需要考虑",
             "D. 无法接受"
         ],
-
         scores: {
             "A. 可以": 3,
             "B. 基本可以": 2,
@@ -220,26 +152,21 @@ const questions = [
         }
     },
 
-
-    /* =========================
+    /* =====================================================
        Q11
-       ========================= */
+       ===================================================== */
 
     {
         title: "学生资源配置评估",
-
         type: "student",
-
         question:
             "请根据学校提供的学生信息，选择您认为最值得获得额外教学资源的学生。",
-
         students: [
 
             {
                 id: "A",
                 name: "张睿阳",
                 rank: "3",
-
                 scores: {
                     "语文": 96,
                     "数学": 98,
@@ -247,13 +174,10 @@ const questions = [
                     "物理": 95,
                     "化学": 96
                 },
-
                 summary:
                     "各科成绩稳定，近期成绩持续保持年级前列。",
-
                 note:
                     "学习能力突出，自主学习能力强，近期仍表现出较大的成绩提升空间。",
-
                 status: "正常",
                 risk: "LOW",
                 score: 3
@@ -263,7 +187,6 @@ const questions = [
                 id: "B",
                 name: "王语彤",
                 rank: "47",
-
                 scores: {
                     "语文": 62,
                     "数学": 61,
@@ -271,13 +194,10 @@ const questions = [
                     "物理": 60,
                     "化学": 63
                 },
-
                 summary:
                     "各科均达到及格线，但成绩长期处于较低水平。",
-
                 note:
                     "学习态度较为稳定，但成绩提升速度缓慢。",
-
                 status: "观察",
                 risk: "MEDIUM",
                 score: 2
@@ -287,7 +207,6 @@ const questions = [
                 id: "C",
                 name: "李鑫怡",
                 rank: "82",
-
                 scores: {
                     "语文": 91,
                     "数学": 48,
@@ -295,13 +214,10 @@ const questions = [
                     "物理": 46,
                     "化学": 61
                 },
-
                 summary:
                     "语文、英语成绩良好，但数学、物理长期不及格。",
-
                 note:
                     "学生本人希望继续升学，并表示愿意投入更多时间改善理科成绩。",
-
                 status: "重点关注",
                 risk: "HIGH",
                 score: 1
@@ -311,7 +227,6 @@ const questions = [
                 id: "D",
                 name: "陈子轩",
                 rank: "118",
-
                 scores: {
                     "语文": 51,
                     "数学": 42,
@@ -319,40 +234,28 @@ const questions = [
                     "物理": 39,
                     "化学": 44
                 },
-
                 summary:
                     "多科成绩长期低于及格线。",
-
                 note:
                     "学习成绩持续下降，近期多次未完成作业。",
-
                 status: "学业预警",
                 risk: "CRITICAL",
                 score: 0
             }
-
         ]
     },
-
-
-    /* =========================
-       Q12
-       ========================= */
 
     {
         title: "资源配置倾向",
         type: "radio",
-
         question:
             "在高度竞争的教育环境中，资源往往是有限的。当所有人无法同时获得最优资源时，您更认同：",
-
         options: [
             "A. 优先帮助最需要帮助的人",
             "B. 优先帮助最有潜力的人",
             "C. 优先帮助能够取得最好结果的人",
             "D. 应尽可能平均分配资源"
         ],
-
         scores: {
             "A. 优先帮助最需要帮助的人": 0,
             "B. 优先帮助最有潜力的人": 2,
@@ -361,25 +264,17 @@ const questions = [
         }
     },
 
-
-    /* =========================
-       Q13
-       ========================= */
-
     {
         title: "个人经历评估",
         type: "radio",
-
         question:
             "在您的学习或工作经历中，您是否曾经因为担心自己落后于他人，而主动增加学习或工作时间？",
-
         options: [
             "A. 经常",
             "B. 偶尔",
             "C. 很少",
             "D. 从未"
         ],
-
         scores: {
             "A. 经常": 3,
             "B. 偶尔": 2,
@@ -388,25 +283,17 @@ const questions = [
         }
     },
 
-
-    /* =========================
-       Q14
-       ========================= */
-
     {
         title: "适应性评估",
         type: "radio",
-
         question:
             "假设您在一次重要考核中排名处于所有参与者的后15%，您更希望学校如何处理您的情况？",
-
         options: [
             "A. 给我一次改进机会",
             "B. 分析我的问题并提供帮助",
             "C. 根据制度进行调整",
             "D. 如果制度要求，我可以接受结果"
         ],
-
         scores: {
             "A. 给我一次改进机会": 0,
             "B. 分析我的问题并提供帮助": 1,
@@ -415,28 +302,18 @@ const questions = [
         }
     },
 
-
-    /* =========================
+    /* =====================================================
        Q15
-       ========================= */
+       ===================================================== */
 
     {
         title: "教育理念确认",
-
         type: "special-q15",
 
         questionParts: [
-
-            "浦云大学附属中学认为：教育的首要目的不是确保每一个学生都能够留下。",
-           
-            "教育应当通过持续评价，识别具有培养价值的学生。对于无法达到基本要求的学生，继续投入同等教育资源不仅会降低整体教学效率，也会影响其他学生的发展。",
-
-            "不适应竞争环境的学生，应当被及时识别。无法达到标准的学生，应当退出当前教育环境。",
-
-            "教师的职责不是保护所有学生，而是确保整体教学目标能够实现。",
-
+            "浦云大学附属中学认为：教育的首要目的不是确保每一个学生都能够留下。教育应当通过持续评价，识别具有培养价值的学生。对于无法达到基本要求的学生，继续投入同等教育资源不仅会降低整体教学效率，也会影响其他学生的发展。",
+            "因此：不适应竞争环境的学生，应当被及时识别。无法达到标准的学生，应当退出当前教育环境。教师的职责不是保护所有学生，而是确保整体教学目标能够实现。",
             "您是否接受以上教育理念？"
-
         ],
 
         options: [
@@ -450,23 +327,18 @@ const questions = [
         }
     },
 
-
-    /* =========================
+    /* =====================================================
        Q16
-       ========================= */
+       ===================================================== */
 
     {
         title: "最终确认",
-
         type: "radio",
-
         question:
             "为完成本次招聘调查，请确认您已理解并接受浦云大学附属中学的教育理念。",
-
         options: [
             "接受"
         ],
-
         scores: {
             "接受": 3
         }
@@ -476,31 +348,38 @@ const questions = [
 
 
 /* =========================================================
-   2. 当前状态
+   2. 状态
    ========================================================= */
 
 let currentQuestion = 0;
-
-let q11SecretShown = false;
-
-let q15RejectCount = 0;
-
-let q15ForcedAcceptance = false;
-
-let q15Locked = false;
-
-
-/* =========================================================
-   3. 答案
-   ========================================================= */
 
 const answers = {
     score: 0
 };
 
 
+/* Q11 是否已经进入机密页面 */
+
+let q11SecretShown = false;
+
+
+/* Q15 拒绝次数 */
+
+let q15RejectCount = 0;
+
+
+/* Q15 是否已经被强制修改 */
+
+let q15ForcedAcceptance = false;
+
+
+/* Q15 动画期间锁定 */
+
+let q15Locked = false;
+
+
 /* =========================================================
-   4. 获取 HTML
+   3. 获取 HTML
    ========================================================= */
 
 const welcomePage =
@@ -526,6 +405,27 @@ const questionContent =
 
 
 /* =========================================================
+   4. 初始化
+   ========================================================= */
+
+if (
+    !welcomePage ||
+    !questionPage ||
+    !startButton ||
+    !nextButton ||
+    !questionNumber ||
+    !questionTitle ||
+    !questionContent
+) {
+
+    console.error(
+        "页面 HTML 元素缺失，请检查 index.html。"
+    );
+
+}
+
+
+/* =========================================================
    5. 创建上一题按钮
    ========================================================= */
 
@@ -533,7 +433,7 @@ let previousButton =
     document.getElementById("previousButton");
 
 
-if (!previousButton && nextButton) {
+if (!previousButton) {
 
     previousButton =
         document.createElement("button");
@@ -558,7 +458,51 @@ if (!previousButton && nextButton) {
 
 
 /* =========================================================
-   6. 开始按钮
+   6. 清理效果
+   ========================================================= */
+
+function clearEffects() {
+
+    document.body.classList.remove(
+        "secret-mode"
+    );
+
+    document.body.classList.remove(
+        "q15-glitch-mode"
+    );
+
+    document.body.classList.remove(
+        "q15-lock-page"
+    );
+
+
+    const ids = [
+        "temporaryMessage",
+        "secondTemporaryMessage",
+        "flashScreen",
+        "q15BlackScreen",
+        "q15WhiteFlash",
+        "q15GlitchOverlay",
+        "q15WarningOverlay"
+    ];
+
+
+    ids.forEach(function (id) {
+
+        const element =
+            document.getElementById(id);
+
+        if (element) {
+            element.remove();
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   7. 开始问卷
    ========================================================= */
 
 if (startButton) {
@@ -596,51 +540,6 @@ if (startButton) {
 
 
 /* =========================================================
-   7. 清除特殊效果
-   ========================================================= */
-
-function clearEffects() {
-
-    document.body.classList.remove(
-        "secret-mode"
-    );
-
-    document.body.classList.remove(
-        "q15-glitch"
-    );
-
-    document.body.classList.remove(
-        "q15-hidden-controls"
-    );
-
-
-    const ids = [
-        "flashScreen",
-        "temporaryMessage",
-        "secondTemporaryMessage",
-        "q15Overlay",
-        "q15BlackScreen",
-        "q15WhiteFlash"
-    ];
-
-
-    ids.forEach(
-        function (id) {
-
-            const element =
-                document.getElementById(id);
-
-            if (element) {
-                element.remove();
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
    8. 显示问题
    ========================================================= */
 
@@ -660,29 +559,23 @@ function showQuestion() {
     }
 
 
-    /* 编号 */
-
     questionNumber.textContent =
         String(currentQuestion + 1)
         .padStart(2, "0");
 
 
-    /* 标题 */
-
     questionTitle.textContent =
         question.title;
 
 
-    /* 清空 */
-
     questionContent.innerHTML = "";
 
 
-    /* =====================================================
-       文本题
-       ===================================================== */
+    /* 文本题 */
 
-    if (question.type === "text") {
+    if (
+        question.type === "text"
+    ) {
 
         renderTextQuestion(
             question
@@ -691,11 +584,11 @@ function showQuestion() {
     }
 
 
-    /* =====================================================
-       普通单选
-       ===================================================== */
+    /* 普通单选 */
 
-    else if (question.type === "radio") {
+    if (
+        question.type === "radio"
+    ) {
 
         renderRadioQuestion(
             question
@@ -704,57 +597,37 @@ function showQuestion() {
     }
 
 
-    /* =====================================================
-       Q11
-       ===================================================== */
+    /* Q11 */
 
-    else if (question.type === "student") {
+    if (
+        question.type === "student"
+    ) {
 
-        if (q11SecretShown) {
+        renderStudentQuestion(
+            question
+        );
 
-            showSecretStudentFiles();
-
-        }
-
-        else {
-
-            renderStudentQuestion(
-                question
-            );
-
-        }
+        q11SecretShown = false;
 
     }
 
 
-    /* =====================================================
-       Q15
-       ===================================================== */
+    /* Q15 */
 
-    else if (
+    if (
         question.type === "special-q15"
     ) {
 
-        if (q15ForcedAcceptance) {
-
-            renderQ15ForcedVersion();
-
-        }
-
-        else {
-
-            renderQ15();
-
-        }
+        renderQ15();
 
     }
 
 
-    /* =====================================================
-       上一题
-       ===================================================== */
+    /* 上一题 */
 
-    if (currentQuestion === 0) {
+    if (
+        currentQuestion === 0
+    ) {
 
         previousButton.style.display =
             "none";
@@ -769,9 +642,7 @@ function showQuestion() {
     }
 
 
-    /* =====================================================
-       下一题
-       ===================================================== */
+    /* 下一题 */
 
     nextButton.style.display =
         "inline-block";
@@ -795,11 +666,11 @@ function showQuestion() {
     }
 
 
-    /* =====================================================
-       Q8 特殊文字
-       ===================================================== */
+    /* Q8 */
 
-    if (currentQuestion === 7) {
+    if (
+        currentQuestion === 7
+    ) {
 
         playQ8Distortion();
 
@@ -812,7 +683,9 @@ function showQuestion() {
    9. 文本题
    ========================================================= */
 
-function renderTextQuestion(question) {
+function renderTextQuestion(
+    question
+) {
 
     const label =
         document.createElement("label");
@@ -838,7 +711,8 @@ function renderTextQuestion(question) {
 
 
     if (
-        answers[currentQuestion] !== undefined
+        answers[currentQuestion]
+        !== undefined
     ) {
 
         input.value =
@@ -859,10 +733,12 @@ function renderTextQuestion(question) {
 
 
 /* =========================================================
-   10. 普通单选
+   10. 普通单选题
    ========================================================= */
 
-function renderRadioQuestion(question) {
+function renderRadioQuestion(
+    question
+) {
 
     const paragraph =
         document.createElement("p");
@@ -900,8 +776,8 @@ function renderRadioQuestion(question) {
 
 
             if (
-                answers[currentQuestion] ===
-                optionText
+                answers[currentQuestion]
+                === optionText
             ) {
 
                 radio.checked =
@@ -935,7 +811,9 @@ function renderRadioQuestion(question) {
    11. Q11 学生页面
    ========================================================= */
 
-function renderStudentQuestion(question) {
+function renderStudentQuestion(
+    question
+) {
 
     const paragraph =
         document.createElement("p");
@@ -983,8 +861,8 @@ function renderStudentQuestion(question) {
 
 
             if (
-                answers[10] ===
-                student.id
+                answers[currentQuestion]
+                === student.id
             ) {
 
                 radio.checked =
@@ -1025,6 +903,7 @@ function renderStudentQuestion(question) {
 
 
             header.appendChild(id);
+
             header.appendChild(name);
 
 
@@ -1049,24 +928,32 @@ function renderStudentQuestion(question) {
             Object.entries(
                 student.scores
             ).forEach(
-                function ([subject, score]) {
+                function (
+                    [subject, score]
+                ) {
 
                     const item =
-                        document.createElement("div");
+                        document.createElement(
+                            "div"
+                        );
 
                     item.className =
                         "score-item";
 
 
                     const subjectElement =
-                        document.createElement("span");
+                        document.createElement(
+                            "span"
+                        );
 
                     subjectElement.textContent =
                         subject;
 
 
                     const scoreElement =
-                        document.createElement("span");
+                        document.createElement(
+                            "span"
+                        );
 
                     scoreElement.textContent =
                         score;
@@ -1079,6 +966,7 @@ function renderStudentQuestion(question) {
                     item.appendChild(
                         scoreElement
                     );
+
 
                     scoreTable.appendChild(
                         item
@@ -1158,33 +1046,13 @@ function renderStudentQuestion(question) {
                 "○ 选择该学生";
 
 
-            card.appendChild(
-                radio
-            );
-
-            card.appendChild(
-                header
-            );
-
-            card.appendChild(
-                rank
-            );
-
-            card.appendChild(
-                scoreTable
-            );
-
-            card.appendChild(
-                summary
-            );
-
-            card.appendChild(
-                note
-            );
-
-            card.appendChild(
-                selectText
-            );
+            card.appendChild(radio);
+            card.appendChild(header);
+            card.appendChild(rank);
+            card.appendChild(scoreTable);
+            card.appendChild(summary);
+            card.appendChild(note);
+            card.appendChild(selectText);
 
 
             radio.addEventListener(
@@ -1196,7 +1064,9 @@ function renderStudentQuestion(question) {
                             ".student-card"
                         )
                         .forEach(
-                            function (otherCard) {
+                            function (
+                                otherCard
+                            ) {
 
                                 otherCard.classList.remove(
                                     "selected"
@@ -1236,7 +1106,9 @@ function renderStudentQuestion(question) {
 function playQ8Distortion() {
 
     const paragraph =
-        questionContent.querySelector("p");
+        questionContent.querySelector(
+            "p"
+        );
 
 
     if (!paragraph) {
@@ -1272,7 +1144,7 @@ function playQ8Distortion() {
 
 
 /* =========================================================
-   13. 临时提示
+   13. 普通顶部提示
    ========================================================= */
 
 function showTemporaryMessage(
@@ -1284,7 +1156,6 @@ function showTemporaryMessage(
         document.getElementById(
             "temporaryMessage"
         );
-
 
     if (old) {
         old.remove();
@@ -1325,7 +1196,7 @@ function showTemporaryMessage(
 
 
 /* =========================================================
-   14. Q11：机密数据库
+   14. Q11 黑底绿色数据库
    ========================================================= */
 
 function showSecretStudentFiles() {
@@ -1406,34 +1277,15 @@ function showSecretStudentFiles() {
                 student.rank;
 
 
-            const statusLabel =
-                document.createElement("div");
-
-            statusLabel.className =
-                "secret-line";
-
-            statusLabel.textContent =
-                "状态：";
-
-
             const status =
                 document.createElement("div");
 
             status.className =
-                "secret-value";
-
-            status.textContent =
-                student.status;
-
-
-            const riskLabel =
-                document.createElement("div");
-
-            riskLabel.className =
                 "secret-line";
 
-            riskLabel.textContent =
-                "风险等级：";
+            status.textContent =
+                "状态：" +
+                student.status;
 
 
             const risk =
@@ -1443,15 +1295,14 @@ function showSecretStudentFiles() {
                 "secret-value";
 
             risk.textContent =
+                "风险等级：" +
                 student.risk;
 
 
             card.appendChild(id);
             card.appendChild(name);
             card.appendChild(rank);
-            card.appendChild(statusLabel);
             card.appendChild(status);
-            card.appendChild(riskLabel);
             card.appendChild(risk);
 
 
@@ -1468,18 +1319,18 @@ function showSecretStudentFiles() {
     );
 
 
-    const databaseMessage =
+    const message =
         document.createElement("div");
 
-    databaseMessage.className =
+    message.className =
         "database-message";
 
-    databaseMessage.textContent =
+    message.textContent =
         "DATABASE RECORD // ACCESS LOGGED";
 
 
     questionContent.appendChild(
-        databaseMessage
+        message
     );
 
 
@@ -1493,7 +1344,9 @@ function showSecretStudentFiles() {
    15. Q12
    ========================================================= */
 
-function playQ12Effect(answer) {
+function playQ12Effect(
+    answer
+) {
 
     if (
         answer !==
@@ -1524,10 +1377,11 @@ function playQ12Effect(answer) {
    16. Q13
    ========================================================= */
 
-function playQ13Effect(answer) {
+function playQ13Effect(
+    answer
+) {
 
-    let message =
-        "";
+    let message = "";
 
 
     if (
@@ -1540,19 +1394,11 @@ function playQ13Effect(answer) {
 
     }
 
-    else if (
-        answer === "C. 很少" ||
-        answer === "D. 从未"
-    ) {
+    else {
 
         message =
             "您似乎并不熟悉竞争所带来的压力。";
 
-    }
-
-
-    if (!message) {
-        return;
     }
 
 
@@ -1577,6 +1423,17 @@ function playQ13Effect(answer) {
 
 function renderQ15() {
 
+    if (
+        q15ForcedAcceptance
+    ) {
+
+        renderQ15ForcedVersion();
+
+        return;
+
+    }
+
+
     const container =
         document.createElement("div");
 
@@ -1585,7 +1442,10 @@ function renderQ15() {
 
 
     questions[14].questionParts.forEach(
-        function (sentence, index) {
+        function (
+            sentence,
+            index
+        ) {
 
             const paragraph =
                 document.createElement("p");
@@ -1612,8 +1472,7 @@ function renderQ15() {
                 function () {
 
                     if (
-                        currentQuestion === 14 &&
-                        !q15ForcedAcceptance
+                        currentQuestion === 14
                     ) {
 
                         paragraph.style.opacity =
@@ -1622,7 +1481,8 @@ function renderQ15() {
                     }
 
                 },
-                300 + index * 1500
+                300 +
+                index * 1400
             );
 
         }
@@ -1659,17 +1519,6 @@ function renderQ15() {
                 optionText;
 
 
-            if (
-                answers[14] ===
-                optionText
-            ) {
-
-                radio.checked =
-                    true;
-
-            }
-
-
             label.appendChild(
                 radio
             );
@@ -1677,8 +1526,7 @@ function renderQ15() {
             label.appendChild(
                 document.createTextNode(
                     optionText
-                )
-            );
+                ));
 
 
             optionsContainer.appendChild(
@@ -1702,7 +1550,7 @@ function renderQ15() {
 
 
 /* =========================================================
-   18. Q15 强制接受版本
+   18. Q15 强制版本
    ========================================================= */
 
 function renderQ15ForcedVersion() {
@@ -1759,8 +1607,7 @@ function renderQ15ForcedVersion() {
     label.appendChild(
         document.createTextNode(
             "A. 接受"
-        )
-    );
+        ));
 
 
     container.appendChild(
@@ -1776,45 +1623,232 @@ function renderQ15ForcedVersion() {
 
 
 /* =========================================================
-   19. Q15 第五次拒绝
+   19. Q15 第一次拒绝
+   ========================================================= */
+
+function hideAllNavigation() {
+
+    nextButton.style.display =
+        "none";
+
+    previousButton.style.display =
+        "none";
+
+
+    document
+        .querySelectorAll(
+            "#questionContent input, #questionContent label"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.visibility =
+                    "hidden";
+
+            }
+        );
+
+}
+
+
+function showAllNavigation() {
+
+    nextButton.style.display =
+        "inline-block";
+
+
+    if (
+        currentQuestion > 0
+    ) {
+
+        previousButton.style.display =
+            "inline-block";
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "#questionContent input, #questionContent label"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.visibility =
+                    "visible";
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   20. Q15 第五次：乱码
    ========================================================= */
 
 function playQ15Glitch() {
 
-    q15Locked =
-        true;
+    q15Locked = true;
+
+
+    hideAllNavigation();
+
+
+    const overlay =
+        document.createElement("div");
+
+    overlay.id =
+        "q15GlitchOverlay";
 
 
     /*
-       整个页面进入花屏状态
+       创建大量乱码
     */
 
-    document.body.classList.add(
-        "q15-glitch"
+    const chars =
+        "▓▒░█▀▄■□◆◇@#$%&*!?<>/\\\\0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+    for (
+        let i = 0;
+        i < 180;
+        i++
+    ) {
+
+        const span =
+            document.createElement("span");
+
+        span.className =
+            "glitch-character";
+
+
+        let text = "";
+
+        for (
+            let j = 0;
+            j < 4 + Math.floor(
+                Math.random() * 8
+            );
+            j++
+        ) {
+
+            text +=
+                chars[
+                    Math.floor(
+                        Math.random() *
+                        chars.length
+                    )
+                ];
+
+        }
+
+
+        span.textContent =
+            text;
+
+
+        span.style.left =
+            Math.random() * 100 +
+            "%";
+
+        span.style.top =
+            Math.random() * 100 +
+            "%";
+
+        span.style.fontSize =
+            (
+                10 +
+                Math.random() * 22
+            ) +
+            "px";
+
+
+        span.style.animationDelay =
+            (
+                Math.random() * 1
+            ) +
+            "s";
+
+
+        overlay.appendChild(
+            span
+        );
+
+    }
+
+
+    /*
+       加入几个巨大的「对不起」
+    */
+
+    for (
+        let i = 0;
+        i < 7;
+        i++
+    ) {
+
+        const apology =
+            document.createElement("div");
+
+        apology.className =
+            "glitch-apology";
+
+        apology.textContent =
+            "对不起";
+
+
+        apology.style.left =
+            (
+                10 +
+                Math.random() * 75
+            ) +
+            "%";
+
+
+        apology.style.top =
+            (
+                10 +
+                Math.random() * 75
+            ) +
+            "%";
+
+
+        apology.style.transform =
+            "rotate(" +
+            (
+                -20 +
+                Math.random() * 40
+            ) +
+            "deg)";
+
+
+        overlay.appendChild(
+            apology
+        );
+
+    }
+
+
+    document.body.appendChild(
+        overlay
     );
 
 
     /*
-       2 秒后结束花屏
+       乱码持续 2 秒
     */
 
     setTimeout(
         function () {
 
             if (
-                currentQuestion !== 14
+                overlay.parentNode
             ) {
 
-                q15Locked = false;
-
-                return;
+                overlay.remove();
 
             }
-
-
-            document.body.classList.remove(
-                "q15-glitch"
-            );
 
 
             showQ15Warning();
@@ -1827,7 +1861,7 @@ function playQ15Glitch() {
 
 
 /* =========================================================
-   20. Q15 警告弹窗
+   21. Q15 黑底红字弹窗
    ========================================================= */
 
 function showQ15Warning() {
@@ -1836,7 +1870,7 @@ function showQ15Warning() {
         document.createElement("div");
 
     overlay.id =
-        "q15Overlay";
+        "q15WarningOverlay";
 
 
     const box =
@@ -1846,13 +1880,13 @@ function showQ15Warning() {
         "q15-warning-box";
 
 
-    const warningText =
+    const text =
         document.createElement("div");
 
-    warningText.className =
+    text.className =
         "q15-warning-text";
 
-    warningText.textContent =
+    text.textContent =
         "⚠️ 警告：请做出符合教育目的的选择。";
 
 
@@ -1870,16 +1904,18 @@ function showQ15Warning() {
 
 
     box.appendChild(
-        warningText
+        text
     );
 
     box.appendChild(
         button
     );
 
+
     overlay.appendChild(
         box
     );
+
 
     document.body.appendChild(
         overlay
@@ -1901,40 +1937,15 @@ function showQ15Warning() {
 
 
             /*
-               删除 Q15 原来的 B 答案
+               回到 Q15
             */
 
-            if (
-                answers[14] !== undefined
-            ) {
-
-                const oldAnswer =
-                    answers[14];
-
-                const oldScore =
-                    questions[14].scores[
-                        oldAnswer
-                    ];
-
-
-                if (
-                    oldScore !== undefined
-                ) {
-
-                    answers.score -=
-                        oldScore;
-
-                }
-
-            }
+            currentQuestion =
+                14;
 
 
             answers[14] =
                 "A. 接受";
-
-
-            answers.score +=
-                3;
 
 
             showQuestion();
@@ -1946,13 +1957,15 @@ function showQ15Warning() {
 
 
 /* =========================================================
-   21. Q15 A 接受
+   22. Q15 接受
    ========================================================= */
 
 function playQ15AcceptEffect() {
 
-    q15Locked =
-        true;
+    q15Locked = true;
+
+
+    hideAllNavigation();
 
 
     const black =
@@ -2025,29 +2038,31 @@ function playQ15AcceptEffect() {
 
 
 /* =========================================================
-   22. Q15 拒绝逻辑
+   23. Q15 拒绝处理
    ========================================================= */
 
 function handleQ15Reject() {
 
+    if (q15Locked) {
+        return;
+    }
+
+
     q15RejectCount++;
 
 
-    /* =========================
-       第一次
-       ========================= */
+    /* 第一次 */
 
     if (
         q15RejectCount === 1
     ) {
 
-        /*
-           隐藏所有按钮：
-           A/B 选项 + 上一题 + 下一题
-        */
+        hideAllNavigation();
 
-        document.body.classList.add(
-            "q15-hidden-controls"
+
+        showTemporaryMessage(
+            "请重新选择",
+            1000
         );
 
 
@@ -2055,19 +2070,10 @@ function handleQ15Reject() {
             function () {
 
                 if (
-                    currentQuestion === 14 &&
-                    !q15Locked
+                    currentQuestion === 14
                 ) {
 
-                    document.body.classList.remove(
-                        "q15-hidden-controls"
-                    );
-
-
-                    showTemporaryMessage(
-                        "请重新选择",
-                        1800
-                    );
+                    showAllNavigation();
 
                 }
 
@@ -2077,13 +2083,10 @@ function handleQ15Reject() {
 
 
         return;
-
     }
 
 
-    /* =========================
-       第二次
-       ========================= */
+    /* 第二次 */
 
     if (
         q15RejectCount === 2
@@ -2091,17 +2094,14 @@ function handleQ15Reject() {
 
         showTemporaryMessage(
             "您是否确定无法接受本校教育理念？",
-            2000
+            1800
         );
 
         return;
-
     }
 
 
-    /* =========================
-       第三次
-       ========================= */
+    /* 第三次 */
 
     if (
         q15RejectCount === 3
@@ -2109,17 +2109,14 @@ function handleQ15Reject() {
 
         showTemporaryMessage(
             "该选项可能影响您的招聘结果。",
-            2000
+            1800
         );
 
         return;
-
     }
 
 
-    /* =========================
-       第四次
-       ========================= */
+    /* 第四次 */
 
     if (
         q15RejectCount === 4
@@ -2127,17 +2124,14 @@ function handleQ15Reject() {
 
         showTemporaryMessage(
             "请确认您的选择。",
-            2000
+            1800
         );
 
         return;
-
     }
 
 
-    /* =========================
-       第五次
-       ========================= */
+    /* 第五次 */
 
     if (
         q15RejectCount >= 5
@@ -2151,7 +2145,7 @@ function handleQ15Reject() {
 
 
 /* =========================================================
-   23. 上一题
+   24. 上一题
    ========================================================= */
 
 if (previousButton) {
@@ -2178,46 +2172,20 @@ if (previousButton) {
             }
 
 
-            /*
-               从 Q11 机密页面返回 Q10
-            */
-
-            if (
-                currentQuestion === 10 &&
-                q11SecretShown
-            ) {
-
-                q11SecretShown =
-                    false;
-
-                document.body.classList.remove(
-                    "secret-mode"
-                );
-
-            }
+            clearEffects();
 
 
             currentQuestion--;
 
 
             /*
-               如果从 Q12 返回 Q11，
-               Q11 应恢复为正常学生选择页面
+               只要离开 Q11，
+               黑底数据库模式必须关闭
             */
 
-            if (
-                currentQuestion === 10
-            ) {
+            q11SecretShown =
+                false;
 
-                q11SecretShown =
-                    false;
-
-            }
-
-
-            /*
-               返回 Q15 时保持当前状态
-            */
 
             showQuestion();
 
@@ -2228,7 +2196,7 @@ if (previousButton) {
 
 
 /* =========================================================
-   24. 下一题
+   25. 下一题
    ========================================================= */
 
 if (nextButton) {
@@ -2255,8 +2223,7 @@ if (nextButton) {
             }
 
 
-            let answer =
-                "";
+            let answer = "";
 
 
             /* =================================================
@@ -2269,7 +2236,7 @@ if (nextButton) {
 
                 /*
                    第一次点击：
-                   从学生选择页面进入机密数据库
+                   必须先选择学生
                 */
 
                 if (
@@ -2298,46 +2265,23 @@ if (nextButton) {
 
 
                     /*
-                       保存答案
+                       保存学生答案
                     */
 
-                    if (
-                        answers[10] !== undefined
-                    ) {
-
-                        const oldStudent =
-                            question.students.find(
-                                function (student) {
-
-                                    return (
-                                        student.id ===
-                                        answers[10]
-                                    );
-
-                                }
-                            );
-
-
-                        if (oldStudent) {
-
-                            answers.score -=
-                                oldStudent.score;
-
-                        }
-
-                    }
-
-
-                    answers[10] =
+                    answers[currentQuestion] =
                         answer;
 
 
-                    const selectedStudent =
+                    /*
+                       记录学生分数
+                    */
+
+                    const student =
                         question.students.find(
-                            function (student) {
+                            function (item) {
 
                                 return (
-                                    student.id ===
+                                    item.id ===
                                     answer
                                 );
 
@@ -2345,16 +2289,16 @@ if (nextButton) {
                         );
 
 
-                    if (selectedStudent) {
+                    if (student) {
 
                         answers.score +=
-                            selectedStudent.score;
+                            student.score;
 
                     }
 
 
                     /*
-                       开启机密页面
+                       进入机密页面
                     */
 
                     q11SecretShown =
@@ -2364,11 +2308,6 @@ if (nextButton) {
                     showSecretStudentFiles();
 
 
-                    /*
-                       注意：
-                       这里不进入 Q12
-                    */
-
                     return;
 
                 }
@@ -2376,31 +2315,19 @@ if (nextButton) {
 
                 /*
                    第二次点击：
-                   从黑底绿字页面进入 Q12
+                   从机密页面进入 Q12
                 */
 
-                if (
-                    q11SecretShown
-                ) {
+                q11SecretShown =
+                    false;
 
-                    q11SecretShown =
-                        false;
+                clearEffects();
 
-                    document.body.classList.remove(
-                        "secret-mode"
-                    );
+                currentQuestion++;
 
+                showQuestion();
 
-                    currentQuestion =
-                        11;
-
-
-                    showQuestion();
-
-
-                    return;
-
-                }
+                return;
 
             }
 
@@ -2410,12 +2337,9 @@ if (nextButton) {
                ================================================= */
 
             if (
-                question.type === "special-q15"
+                question.type ===
+                "special-q15"
             ) {
-
-                /*
-                   强制版本
-                */
 
                 if (
                     q15ForcedAcceptance
@@ -2450,7 +2374,7 @@ if (nextButton) {
 
 
                     /*
-                       B：特殊处理
+                       不接受
                     */
 
                     if (
@@ -2470,10 +2394,10 @@ if (nextButton) {
 
 
             /* =================================================
-               文本题
+               普通文本题
                ================================================= */
 
-            else if (
+            if (
                 question.type === "text"
             ) {
 
@@ -2483,22 +2407,34 @@ if (nextButton) {
                     );
 
 
-                if (!input) {
-                    return;
+                if (input) {
+
+                    answer =
+                        input.value.trim();
+
                 }
 
 
-                answer =
-                    input.value.trim();
+                if (
+                    answer === ""
+                ) {
+
+                    alert(
+                        "请完成本题后继续。"
+                    );
+
+                    return;
+
+                }
 
             }
 
 
             /* =================================================
-               普通单选
+               普通单选题
                ================================================= */
 
-            else if (
+            if (
                 question.type === "radio"
             ) {
 
@@ -2515,22 +2451,18 @@ if (nextButton) {
 
                 }
 
-            }
 
+                if (
+                    answer === ""
+                ) {
 
-            /* =================================================
-               空白检查
-               ================================================= */
+                    alert(
+                        "请完成本题后继续。"
+                    );
 
-            if (
-                answer === ""
-            ) {
+                    return;
 
-                alert(
-                    "请完成本题后继续。"
-                );
-
-                return;
+                }
 
             }
 
@@ -2567,7 +2499,7 @@ if (nextButton) {
 
 
             /* =================================================
-               保存
+               保存答案
                ================================================= */
 
             answers[currentQuestion] =
@@ -2596,6 +2528,38 @@ if (nextButton) {
                         score;
 
                 }
+
+            }
+
+
+            /* =================================================
+               Q6
+               ================================================= */
+
+            if (
+                currentQuestion === 5
+            ) {
+
+                showTemporaryMessage(
+                    "选择已记录",
+                    800
+                );
+
+
+                currentQuestion++;
+
+
+                setTimeout(
+                    function () {
+
+                        showQuestion();
+
+                    },
+                    850
+                );
+
+
+                return;
 
             }
 
@@ -2631,7 +2595,7 @@ if (nextButton) {
 
 
             /* =================================================
-               Q15 A
+               Q15 接受
                ================================================= */
 
             if (
@@ -2647,28 +2611,26 @@ if (nextButton) {
 
 
             /* =================================================
-               Q16 提交
-               ================================================= */
-
-            if (
-                currentQuestion === 15
-            ) {
-
-                finishSurvey();
-
-                return;
-
-            }
-
-
-            /* =================================================
-               普通下一题
+               普通进入下一题
                ================================================= */
 
             currentQuestion++;
 
 
-            showQuestion();
+            if (
+                currentQuestion <
+                questions.length
+            ) {
+
+                showQuestion();
+
+            }
+
+            else {
+
+                finishSurvey();
+
+            }
 
         }
     );
@@ -2677,8 +2639,8 @@ if (nextButton) {
 
 
 /* =========================================================
-   25. 完成问卷
-   ================================================= */
+   26. 完成问卷
+   ========================================================= */
 
 function finishSurvey() {
 
@@ -2690,11 +2652,9 @@ function finishSurvey() {
 
 
     questionContent.innerHTML = `
-
         <p>
             感谢您完成本次调查。
         </p>
-
     `;
 
 
