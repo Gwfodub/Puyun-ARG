@@ -11,25 +11,37 @@
 
 const questions = [
 
-    /* Q1 */
+    /* =====================
+       Q1
+       ===================== */
+
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的姓名："
     },
 
-    /* Q2 */
+
+    /* =====================
+       Q2
+       ===================== */
+
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的年龄："
     },
 
-    /* Q3 */
+
+    /* =====================
+       Q3
+       ===================== */
+
     {
         title: "基本信息",
         type: "radio",
         question: "您的最高学历是：",
+
         options: [
             "本科",
             "硕士研究生",
@@ -37,23 +49,33 @@ const questions = [
         ]
     },
 
-    /* Q4 */
+
+    /* =====================
+       Q4
+       ===================== */
+
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的专业："
     },
 
-    /* Q5 */
+
+    /* =====================
+       Q5
+       ===================== */
+
     {
         title: "教学经历",
         type: "radio",
         question: "您是否具有教学经验？",
+
         options: [
             "有",
             "没有"
         ]
     },
+
 
     /* =====================
        Q6
@@ -83,6 +105,7 @@ const questions = [
         }
     },
 
+
     /* =====================
        Q7
        ===================== */
@@ -110,6 +133,7 @@ const questions = [
             "E. 视情况而定": 1
         }
     },
+
 
     /* =====================
        Q8
@@ -141,6 +165,7 @@ const questions = [
         }
     },
 
+
     /* =====================
        Q9
        ===================== */
@@ -167,6 +192,7 @@ const questions = [
             "D. 过于严格": 0
         }
     },
+
 
     /* =====================
        Q10
@@ -195,6 +221,7 @@ const questions = [
         }
     },
 
+
     /* =====================
        Q11
        ===================== */
@@ -212,6 +239,7 @@ const questions = [
             {
                 id: "A",
                 name: "张睿阳",
+
                 rank: "第 3 名",
 
                 scores: {
@@ -231,9 +259,11 @@ const questions = [
                 score: 3
             },
 
+
             {
                 id: "B",
                 name: "王语彤",
+
                 rank: "第 47 名",
 
                 scores: {
@@ -253,9 +283,11 @@ const questions = [
                 score: 2
             },
 
+
             {
                 id: "C",
                 name: "李鑫怡",
+
                 rank: "第 82 名",
 
                 scores: {
@@ -275,9 +307,11 @@ const questions = [
                 score: 1
             },
 
+
             {
                 id: "D",
                 name: "陈子轩",
+
                 rank: "第 118 名",
 
                 scores: {
@@ -299,6 +333,7 @@ const questions = [
 
         ]
     },
+
 
     /* =====================
        Q12
@@ -327,6 +362,7 @@ const questions = [
         }
     },
 
+
     /* =====================
        Q13
        ===================== */
@@ -353,6 +389,7 @@ const questions = [
             "D. 从未": 0
         }
     },
+
 
     /* =====================
        Q14
@@ -396,10 +433,15 @@ let currentQuestion = 0;
    ========================= */
 
 const answers = {
-
     score: 0
-
 };
+
+
+/* =========================
+   Q11 是否已经进入机密模式
+   ========================= */
+
+let q11SecretMode = false;
 
 
 /* =========================
@@ -465,6 +507,10 @@ startButton.addEventListener(
         questionPage.style.display =
             "block";
 
+        currentQuestion = 0;
+
+        q11SecretMode = false;
+
         showQuestion();
 
     }
@@ -477,31 +523,44 @@ startButton.addEventListener(
 
 function showQuestion() {
 
+    /*
+       每次正常显示问题时，
+       默认恢复正常配色
+    */
+
+    if (!q11SecretMode) {
+
+        document.body.classList.remove(
+            "secret-mode"
+        );
+
+    }
+
+
     const question =
         questions[currentQuestion];
 
 
-    /* 恢复正常页面状态 */
-
-    document.body.classList.remove(
-        "secret-mode"
-    );
-
-
-    /* 问题编号 */
+    /* =====================
+       问题编号
+       ===================== */
 
     questionNumber.textContent =
         String(currentQuestion + 1)
         .padStart(2, "0");
 
 
-    /* 问题标题 */
+    /* =====================
+       问题标题
+       ===================== */
 
     questionTitle.textContent =
         question.title;
 
 
-    /* 清空内容 */
+    /* =====================
+       清空问题内容
+       ===================== */
 
     questionContent.innerHTML = "";
 
@@ -640,6 +699,8 @@ function showQuestion() {
 
     if (
         question.type === "student"
+        &&
+        !q11SecretMode
     ) {
 
         const questionText =
@@ -952,6 +1013,10 @@ function showQuestion() {
        上一题按钮
        ===================== */
 
+    /*
+       Q11机密模式下也显示上一题
+    */
+
     if (
         currentQuestion === 0
     ) {
@@ -977,6 +1042,11 @@ function showQuestion() {
         "inline-block";
 
 
+    /*
+       Q11机密模式：
+       下一题仍然叫“下一题”
+    */
+
     if (
         currentQuestion
         === questions.length - 1
@@ -996,7 +1066,7 @@ function showQuestion() {
 
 
     /* =====================
-       Q8 特殊文字
+       Q8特殊文字效果
        ===================== */
 
     if (
@@ -1046,6 +1116,32 @@ previousButton.addEventListener(
     "click",
     function() {
 
+        /*
+           Q11机密档案状态下：
+           直接回到Q10
+        */
+
+        if (
+            q11SecretMode
+            &&
+            currentQuestion === 10
+        ) {
+
+            q11SecretMode = false;
+
+            document.body.classList.remove(
+                "secret-mode"
+            );
+
+            currentQuestion = 9;
+
+            showQuestion();
+
+            return;
+
+        }
+
+
         if (
             currentQuestion <= 0
         ) {
@@ -1056,10 +1152,11 @@ previousButton.addEventListener(
 
 
         /*
-           无论之前是否处于
-           Q11 机密档案模式，
-           返回上一题都恢复正常
+           删除所有特殊页面效果
         */
+
+        q11SecretMode = false;
+
 
         document.body.classList.remove(
             "secret-mode"
@@ -1104,6 +1201,7 @@ previousButton.addEventListener(
 
         currentQuestion--;
 
+
         showQuestion();
 
     }
@@ -1147,7 +1245,7 @@ function createFlashScreen() {
 
 
 /* =========================
-   Q11 机密档案效果
+   Q11机密档案效果
    ========================= */
 
 function playQ11SecretEffect() {
@@ -1157,6 +1255,13 @@ function playQ11SecretEffect() {
 
     setTimeout(
         function() {
+
+            /*
+               进入机密模式
+            */
+
+            q11SecretMode = true;
+
 
             document.body.classList.add(
                 "secret-mode"
@@ -1173,7 +1278,7 @@ function playQ11SecretEffect() {
 
 
 /* =========================
-   Q11 机密档案页面
+   Q11机密档案页面
    ========================= */
 
 function showSecretStudentFiles() {
@@ -1288,7 +1393,7 @@ function showSecretStudentFiles() {
 
 
 /* =========================
-   Q12 特殊效果
+   Q12特殊效果
    ========================= */
 
 function playQ12Effect(answer) {
@@ -1331,7 +1436,7 @@ function playQ12Effect(answer) {
 
 
 /* =========================
-   Q13 特殊效果
+   Q13特殊效果
    ========================= */
 
 function playQ13Effect(answer) {
@@ -1433,7 +1538,7 @@ function showTemporaryMessage(
 
 
 /* =========================
-   Q12 第二行提示
+   Q12第二行提示
    ========================= */
 
 function showSecondMessage(text) {
@@ -1500,6 +1605,47 @@ nextButton.addEventListener(
             questions[currentQuestion];
 
 
+        /* =====================
+           Q11机密模式
+           ===================== */
+
+        /*
+           注意：
+
+           此时Q11已经没有单选框，
+           玩家只需要点击下一题。
+
+           点击后：
+           secret mode关闭
+           → currentQuestion + 1
+           → Q12
+        */
+
+        if (
+            question.type === "student"
+            &&
+            q11SecretMode
+        ) {
+
+            q11SecretMode = false;
+
+
+            document.body.classList.remove(
+                "secret-mode"
+            );
+
+
+            currentQuestion++;
+
+
+            showQuestion();
+
+
+            return;
+
+        }
+
+
         let answer = "";
 
 
@@ -1552,7 +1698,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           Q11 学生选择
+           Q11学生选择
            ===================== */
 
         if (
@@ -1593,8 +1739,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           如果重新回答，
-           先删除旧分数
+           删除旧分数
            ===================== */
 
         if (
@@ -1618,7 +1763,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           Q11 删除旧学生分数
+           Q11删除旧学生分数
            ===================== */
 
         if (
@@ -1681,7 +1826,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           Q11 积分
+           Q11积分
            ===================== */
 
         if (
@@ -1746,39 +1891,19 @@ nextButton.addEventListener(
         ) {
 
             /*
-               Q11：
+               这里非常重要：
 
-               选择学生
-                   ↓
-               点击下一题
-                   ↓
-               闪屏
-                   ↓
-               黑底绿字机密档案
-                   ↓
-               2.5秒后自动进入Q12
+               不增加 currentQuestion。
+
+               玩家仍然处于Q11。
+
+               页面变成机密档案后，
+               玩家必须再次点击下一题。
+
+               这样才能进入Q12。
             */
 
             playQ11SecretEffect();
-
-
-            currentQuestion++;
-
-
-            setTimeout(
-                function() {
-
-                    document.body.classList.remove(
-                        "secret-mode"
-                    );
-
-
-                    showQuestion();
-
-                },
-                2500
-            );
-
 
             return;
 
@@ -1833,8 +1958,6 @@ nextButton.addEventListener(
 
             /*
                Q6 → Q7
-               给“选择已记录”
-               留出显示时间
             */
 
             if (
@@ -1859,9 +1982,9 @@ nextButton.addEventListener(
 
         else {
 
-            /*
+            /* =====================
                暂时结束
-            */
+               ===================== */
 
             questionTitle.textContent =
                 "问卷已完成";
@@ -1888,4 +2011,3 @@ nextButton.addEventListener(
 
     }
 );
-```
