@@ -296,3 +296,282 @@ button:hover {
     margin-top: 40px;
 
 }
+
+/* =========================
+   Q11 学生档案卡片
+   ========================= */
+
+.student-question {
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   卡片整体布局
+   ========================= */
+
+.student-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================
+   学生卡片
+   ========================= */
+
+.student-card {
+    position: relative;
+
+    display: block;
+
+    padding: 22px;
+
+    border: 1px solid #d8d8d8;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* 鼠标经过 */
+
+.student-card:hover {
+
+    border-color: #999;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================
+   隐藏真正的 radio
+   ========================= */
+
+.student-card input[type="radio"] {
+
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================
+   被选择的卡片
+   ========================= */
+
+.student-card.selected {
+
+    border-color: #222;
+
+    box-shadow:
+        0 0 0 2px #222;
+
+}
+
+
+/* =========================
+   卡片顶部
+   ========================= */
+
+.student-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* A / B / C / D */
+
+.student-id {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+
+    height: 30px;
+
+    border: 1px solid #999;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+}
+
+
+/* 学生姓名 */
+
+.student-name {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   年级排名
+   ========================= */
+
+.student-rank {
+
+    margin-bottom: 15px;
+
+    font-size: 13px;
+
+    color: #666;
+
+}
+
+
+/* =========================
+   成绩表
+   ========================= */
+
+.student-scores {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    border-top: 1px solid #eee;
+
+    border-bottom: 1px solid #eee;
+
+    padding: 12px 0;
+
+    margin-bottom: 15px;
+
+}
+
+
+.score-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 12px;
+
+}
+
+
+.score-item span:last-child {
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   AI总结 / 教师备注
+   ========================= */
+
+.student-section {
+
+    margin-top: 12px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+}
+
+
+.student-section strong {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================
+   选择提示
+   ========================= */
+
+.student-select {
+
+    margin-top: 18px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #eee;
+
+    font-size: 12px;
+
+    color: #777;
+
+}
+
+
+/* =========================
+   选择后的提示
+   ========================= */
+
+.student-card.selected .student-select {
+
+    color: #111;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   手机 / 小屏幕适配
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .student-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
