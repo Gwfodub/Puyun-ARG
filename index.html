@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,66 +10,135 @@
     <title>浦云大学附属中学｜实习教师招聘调查</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
     <main class="survey-container">
 
-        <!-- 学校校徽 -->
-        <img
-            src="logo.png"
-            alt="浦云大学附属中学校徽"
-            class="school-logo"
-        >
+
+        <!-- =========================
+             首页
+             ========================= -->
+
+        <section id="welcomePage">
+
+            <!-- 校徽 -->
+            <img
+                src="./logo.png"
+                alt="浦云大学附属中学校徽"
+                class="school-logo"
+            >
 
 
-        <!-- 学校名称 -->
-        <div class="school-name">
-            浦云大学附属中学
-        </div>
+            <!-- 中文校名 -->
+            <div class="school-name">
+                浦云大学附属中学
+            </div>
 
 
-        <!-- 英文名称 -->
-        <div class="school-name-en">
-            High School Affiliated to Puyun University
-        </div>
+            <!-- 英文校名 -->
+            <div class="school-name-en">
+                High School Affiliated to Puyun University
+            </div>
 
 
-        <!-- 问卷标题 -->
-        <h1>
-            2026年度实习教师招聘调查问卷
-        </h1>
+            <!-- 问卷标题 -->
+            <h1>
+                2026年度实习教师招聘调查问卷
+            </h1>
 
 
-        <!-- 问卷说明 -->
-        <p class="description">
-            感谢您参与本次实习教师招聘调查。
-            <br>
-            本问卷预计耗时 8–12 分钟。
-        </p>
+            <!-- 问卷说明 -->
+            <p class="description">
 
+                感谢您参与本次实习教师招聘调查。
 
-        <!-- 注意事项 -->
-        <section class="notice">
+                <br>
 
-            <p>
-                请根据您的真实情况填写以下信息。
+                本问卷预计耗时 8–12 分钟。
+
             </p>
 
-            <p>
-                您所提交的信息将用于本次招聘筛选。
-            </p>
+
+            <!-- 注意事项 -->
+            <section class="notice">
+
+                <p>
+                    请根据您的真实情况填写以下信息。
+                </p>
+
+                <p>
+                    您所提交的信息将用于本次招聘筛选。
+                </p>
+
+            </section>
+
+
+            <!-- 开始按钮 -->
+            <button id="startButton">
+                开始填写
+            </button>
 
         </section>
 
 
-        <!-- 开始按钮 -->
-        <button id="startButton">
-            开始填写
-        </button>
+
+        <!-- =========================
+             问题页面
+             ========================= -->
+
+        <section
+            id="questionPage"
+            style="display: none;"
+        >
+
+            <!-- 问题编号 -->
+
+            <div class="question-number">
+
+                <span id="questionNumber">
+                    01
+                </span>
+
+                / 20
+
+            </div>
+
+
+            <!-- 问题标题 -->
+
+            <h2 id="questionTitle">
+
+                基本信息
+
+            </h2>
+
+
+            <!-- 问题内容 -->
+
+            <div id="questionContent">
+
+                <!-- JavaScript 会在这里生成问题 -->
+
+            </div>
+
+
+            <!-- 下一题 -->
+
+            <button id="nextButton">
+
+                下一题
+
+            </button>
+
+        </section>
+
 
     </main>
+
 
     <script src="script.js"></script>
 
