@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>实习教师招聘调查问卷</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="survey-container">
+
+        <header>
+            <div class="school-name">
+                浦云大学附属中学
+            </div>
+
+            <h1>
+                2026年度实习教师招聘调查问卷
+            </h1>
+
+            <p class="description">
+                感谢您参与本次实习教师招聘调查。
+                <br>
+                本问卷预计耗时 8–12 分钟。
+            </p>
+        </header>
+
+
+        <section class="notice">
+
+            <p>
+                请根据您的真实情况填写以下信息。
+            </p>
+
+            <p>
+                您所提交的信息将用于本次招聘筛选。
+            </p>
+
+        </section>
+
+
+        <button id="startButton">
+            开始填写
+        </button>
+
+    </main>
+
+</body>
+
+</html>
