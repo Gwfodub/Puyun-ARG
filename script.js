@@ -1,3 +1,4 @@
+```javascript
 /* =========================
    浦云大学附属中学
    实习教师招聘调查问卷
@@ -11,32 +12,21 @@
 
 const questions = [
 
-    /* =====================
-       Q1
-       ===================== */
-
+    /* Q1 */
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的姓名："
     },
 
-
-    /* =====================
-       Q2
-       ===================== */
-
+    /* Q2 */
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的年龄："
     },
 
-
-    /* =====================
-       Q3
-       ===================== */
-
+    /* Q3 */
     {
         title: "基本信息",
         type: "radio",
@@ -48,22 +38,14 @@ const questions = [
         ]
     },
 
-
-    /* =====================
-       Q4
-       ===================== */
-
+    /* Q4 */
     {
         title: "基本信息",
         type: "text",
         question: "请输入您的专业："
     },
 
-
-    /* =====================
-       Q5
-       ===================== */
-
+    /* Q5 */
     {
         title: "教学经历",
         type: "radio",
@@ -73,7 +55,6 @@ const questions = [
             "没有"
         ]
     },
-
 
     /* =====================
        Q6
@@ -100,11 +81,8 @@ const questions = [
             "C. 独立思考与解决问题的能力": 1,
             "D. 良好的品格与合作能力": 0,
             "E. 以上都很重要": 1
-        },
-
-        effect: "record"
+        }
     },
-
 
     /* =====================
        Q7
@@ -134,7 +112,6 @@ const questions = [
         }
     },
 
-
     /* =====================
        Q8
        ===================== */
@@ -162,11 +139,8 @@ const questions = [
             "B. 基本可以接受": 2,
             "C. 需要进一步了解": 1,
             "D. 无法接受": 0
-        },
-
-        effect: "q8"
+        }
     },
-
 
     /* =====================
        Q9
@@ -195,7 +169,6 @@ const questions = [
         }
     },
 
-
     /* =====================
        Q10
        ===================== */
@@ -223,7 +196,6 @@ const questions = [
         }
     },
 
-
     /* =====================
        Q11
        ===================== */
@@ -240,9 +212,7 @@ const questions = [
 
             {
                 id: "A",
-
                 name: "张睿阳",
-
                 rank: "第 3 名",
 
                 scores: {
@@ -262,12 +232,9 @@ const questions = [
                 score: 3
             },
 
-
             {
                 id: "B",
-
                 name: "王语彤",
-
                 rank: "第 47 名",
 
                 scores: {
@@ -287,12 +254,9 @@ const questions = [
                 score: 2
             },
 
-
             {
                 id: "C",
-
                 name: "李鑫怡",
-
                 rank: "第 82 名",
 
                 scores: {
@@ -312,12 +276,9 @@ const questions = [
                 score: 1
             },
 
-
             {
                 id: "D",
-
                 name: "陈子轩",
-
                 rank: "第 118 名",
 
                 scores: {
@@ -340,7 +301,6 @@ const questions = [
         ]
     },
 
-
     /* =====================
        Q12
        ===================== */
@@ -354,32 +314,19 @@ const questions = [
             "在高度竞争的教育环境中，资源往往是有限的。当所有人无法同时获得最优资源时，您更认同：",
 
         options: [
-
             "A. 优先帮助最需要帮助的人",
-
             "B. 优先帮助最有潜力的人",
-
             "C. 优先帮助能够取得最好结果的人",
-
             "D. 应尽可能平均分配资源"
-
         ],
 
         scores: {
-
             "A. 优先帮助最需要帮助的人": 0,
-
             "B. 优先帮助最有潜力的人": 2,
-
             "C. 优先帮助能够取得最好结果的人": 3,
-
             "D. 应尽可能平均分配资源": 1
-
-        },
-
-        effect: "q12"
+        }
     },
-
 
     /* =====================
        Q13
@@ -394,32 +341,19 @@ const questions = [
             "在您的学习或工作经历中，您是否曾经因为担心自己落后于他人，而主动增加学习或工作时间？",
 
         options: [
-
             "A. 经常",
-
             "B. 偶尔",
-
             "C. 很少",
-
             "D. 从未"
-
         ],
 
         scores: {
-
             "A. 经常": 3,
-
             "B. 偶尔": 2,
-
             "C. 很少": 1,
-
             "D. 从未": 0
-
-        },
-
-        effect: "q13"
+        }
     },
-
 
     /* =====================
        Q14
@@ -434,29 +368,18 @@ const questions = [
             "假设您在一次重要考核中排名处于所有参与者的后15%，您更希望学校如何处理您的情况？",
 
         options: [
-
             "A. 给我一次改进机会",
-
             "B. 分析我的问题并提供帮助",
-
             "C. 根据制度进行调整",
-
             "D. 如果制度要求，我可以接受结果"
-
         ],
 
         scores: {
-
             "A. 给我一次改进机会": 0,
-
             "B. 分析我的问题并提供帮助": 1,
-
             "C. 根据制度进行调整": 2,
-
             "D. 如果制度要求，我可以接受结果": 3
-
         }
-
     }
 
 ];
@@ -559,45 +482,29 @@ function showQuestion() {
         questions[currentQuestion];
 
 
-    /* =====================
-       问题编号
-       ===================== */
+    /* 恢复正常页面状态 */
+
+    document.body.classList.remove(
+        "secret-mode"
+    );
+
+
+    /* 问题编号 */
 
     questionNumber.textContent =
         String(currentQuestion + 1)
         .padStart(2, "0");
 
 
-    /* =====================
-       问题标题
-       ===================== */
+    /* 问题标题 */
 
     questionTitle.textContent =
         question.title;
 
 
-    /* =====================
-       清空问题
-       ===================== */
+    /* 清空内容 */
 
     questionContent.innerHTML = "";
-
-
-    /* =====================
-       Q8 特殊处理
-       ===================== */
-
-    if (
-        currentQuestion === 7
-    ) {
-
-        questionContent.dataset.q8Normal =
-            question.question;
-
-        questionContent.dataset.q8Distorted =
-            question.distortedQuestion;
-
-    }
 
 
     /* =====================
@@ -711,7 +618,6 @@ function showQuestion() {
                     radio
                 );
 
-
                 label.appendChild(
                     document.createTextNode(
                         optionText
@@ -730,7 +636,7 @@ function showQuestion() {
 
 
     /* =====================
-       学生档案卡片
+       Q11 学生档案卡片
        ===================== */
 
     if (
@@ -859,7 +765,9 @@ function showQuestion() {
                     ) {
 
                         const item =
-                            document.createElement("div");
+                            document.createElement(
+                                "div"
+                            );
 
                         item.className =
                             "score-item";
@@ -1089,8 +997,7 @@ function showQuestion() {
 
 
     /* =====================
-       Q8：进入页面后显示
-       “劝退处理”
+       Q8 特殊文字
        ===================== */
 
     if (
@@ -1111,11 +1018,6 @@ function showQuestion() {
 
             setTimeout(
                 function() {
-
-                    /*
-                       如果玩家仍然停留在 Q8
-                       才恢复正常文字
-                    */
 
                     if (
                         currentQuestion === 7
@@ -1154,6 +1056,53 @@ previousButton.addEventListener(
         }
 
 
+        /*
+           无论之前是否处于
+           Q11 机密档案模式，
+           返回上一题都恢复正常
+        */
+
+        document.body.classList.remove(
+            "secret-mode"
+        );
+
+
+        const flash =
+            document.getElementById(
+                "flashScreen"
+            );
+
+        if (flash) {
+
+            flash.remove();
+
+        }
+
+
+        const temporaryMessage =
+            document.getElementById(
+                "temporaryMessage"
+            );
+
+        if (temporaryMessage) {
+
+            temporaryMessage.remove();
+
+        }
+
+
+        const secondMessage =
+            document.getElementById(
+                "secondTemporaryMessage"
+            );
+
+        if (secondMessage) {
+
+            secondMessage.remove();
+
+        }
+
+
         currentQuestion--;
 
         showQuestion();
@@ -1163,7 +1112,7 @@ previousButton.addEventListener(
 
 
 /* =========================
-   创建全屏闪屏
+   闪屏效果
    ========================= */
 
 function createFlashScreen() {
@@ -1183,7 +1132,13 @@ function createFlashScreen() {
     setTimeout(
         function() {
 
-            flash.remove();
+            if (
+                flash.parentNode
+            ) {
+
+                flash.remove();
+
+            }
 
         },
         180
@@ -1193,25 +1148,13 @@ function createFlashScreen() {
 
 
 /* =========================
-   Q11
-   机密档案效果
+   Q11 机密档案效果
    ========================= */
 
 function playQ11SecretEffect() {
 
-    /*
-       第一步：
-       页面闪白
-    */
-
     createFlashScreen();
 
-
-    /*
-       第二步：
-       等待 0.5 秒
-       进入机密档案模式
-    */
 
     setTimeout(
         function() {
@@ -1231,7 +1174,7 @@ function playQ11SecretEffect() {
 
 
 /* =========================
-   Q11 机密学生档案
+   Q11 机密档案页面
    ========================= */
 
 function showSecretStudentFiles() {
@@ -1266,8 +1209,7 @@ function showSecretStudentFiles() {
 
 
     /*
-       注意：
-       四张卡片全部显示为
+       四张档案全部变成
        张睿阳
     */
 
@@ -1285,6 +1227,7 @@ function showSecretStudentFiles() {
 
 
         card.innerHTML = `
+
             <div class="secret-student-name">
                 张睿阳
             </div>
@@ -1312,6 +1255,7 @@ function showSecretStudentFiles() {
             <div class="secret-value">
                 LOW
             </div>
+
         `;
 
 
@@ -1326,10 +1270,6 @@ function showSecretStudentFiles() {
         secretGrid
     );
 
-
-    /*
-       页面底部提示
-    */
 
     const databaseMessage =
         document.createElement("div");
@@ -1349,14 +1289,10 @@ function showSecretStudentFiles() {
 
 
 /* =========================
-   Q12 效果
+   Q12 特殊效果
    ========================= */
 
 function playQ12Effect(answer) {
-
-    /*
-       只有选择 C 才触发
-    */
 
     if (
         answer !==
@@ -1368,10 +1304,6 @@ function playQ12Effect(answer) {
     }
 
 
-    /*
-       页面停顿
-    */
-
     setTimeout(
         function() {
 
@@ -1380,11 +1312,6 @@ function playQ12Effect(answer) {
                 1000
             );
 
-
-            /*
-               第一行出现后
-               再出现第二行
-            */
 
             setTimeout(
                 function() {
@@ -1405,7 +1332,7 @@ function playQ12Effect(answer) {
 
 
 /* =========================
-   Q13 效果
+   Q13 特殊效果
    ========================= */
 
 function playQ13Effect(answer) {
@@ -1453,18 +1380,13 @@ function playQ13Effect(answer) {
 
 
 /* =========================
-   第一行临时提示
+   临时提示
    ========================= */
 
 function showTemporaryMessage(
     text,
     duration
 ) {
-
-    /*
-       如果已经存在旧提示
-       先删除
-    */
 
     const old =
         document.getElementById(
@@ -1497,8 +1419,6 @@ function showTemporaryMessage(
         function() {
 
             if (
-                message
-                &&
                 message.parentNode
             ) {
 
@@ -1514,8 +1434,7 @@ function showTemporaryMessage(
 
 
 /* =========================
-   第二行提示
-   Q12 专用
+   Q12 第二行提示
    ========================= */
 
 function showSecondMessage(text) {
@@ -1534,10 +1453,6 @@ function showSecondMessage(text) {
         message
     );
 
-
-    /*
-       两行一起消失
-    */
 
     setTimeout(
         function() {
@@ -1638,7 +1553,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           学生档案
+           Q11 学生选择
            ===================== */
 
         if (
@@ -1679,7 +1594,8 @@ nextButton.addEventListener(
 
 
         /* =====================
-           删除之前的分数
+           如果重新回答，
+           先删除旧分数
            ===================== */
 
         if (
@@ -1703,7 +1619,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           Q11 删除旧分数
+           Q11 删除旧学生分数
            ===================== */
 
         if (
@@ -1749,7 +1665,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           普通分数
+           普通题目积分
            ===================== */
 
         if (
@@ -1766,7 +1682,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           Q11 学生分数
+           Q11 积分
            ===================== */
 
         if (
@@ -1831,17 +1747,39 @@ nextButton.addEventListener(
         ) {
 
             /*
-               不立即进入 Q12
+               Q11：
 
-               先播放：
+               选择学生
+                   ↓
+               点击下一题
+                   ↓
                闪屏
-               ↓
-               0.5秒
-               ↓
-               机密档案
+                   ↓
+               黑底绿字机密档案
+                   ↓
+               2.5秒后自动进入Q12
             */
 
             playQ11SecretEffect();
+
+
+            currentQuestion++;
+
+
+            setTimeout(
+                function() {
+
+                    document.body.classList.remove(
+                        "secret-mode"
+                    );
+
+
+                    showQuestion();
+
+                },
+                2500
+            );
+
 
             return;
 
@@ -1879,7 +1817,7 @@ nextButton.addEventListener(
 
 
         /* =====================
-           下一题
+           进入下一题
            ===================== */
 
         currentQuestion++;
@@ -1891,16 +1829,17 @@ nextButton.addEventListener(
             questions.length
         ) {
 
-            /*
-               给 Q6 → Q7 的提示
-               留一点时间
-            */
-
             let delay = 0;
 
 
+            /*
+               Q6 → Q7
+               给“选择已记录”
+               留出显示时间
+            */
+
             if (
-                question.effect === "record"
+                question === questions[5]
             ) {
 
                 delay = 850;
@@ -1950,3 +1889,4 @@ nextButton.addEventListener(
 
     }
 );
+```
