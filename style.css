@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+
+    background: #f3f4f6;
+
+    font-family:
+        Arial,
+        "Microsoft YaHei",
+        sans-serif;
+
+    color: #263238;
+}
+
+
+.survey-container {
+
+    width: 700px;
+
+    max-width: 90%;
+
+    margin: 80px auto;
+
+    background: white;
+
+    padding: 50px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.school-name {
+
+    font-size: 14px;
+
+    color: #52606d;
+
+    margin-bottom: 25px;
+}
+
+
+h1 {
+
+    font-size: 24px;
+
+    font-weight: normal;
+
+    margin-bottom: 25px;
+}
+
+
+.description {
+
+    color: #52606d;
+
+    line-height: 1.8;
+}
+
+
+.notice {
+
+    margin-top: 35px;
+
+    padding: 20px;
+
+    background: #f7f8fa;
+
+    border-left: 3px solid #52606d;
+
+    color: #52606d;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+
+button {
+
+    margin-top: 35px;
+
+    padding: 12px 32px;
+
+    border: none;
+
+    background: #263238;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+button:hover {
+
+    opacity: 0.85;
+
+}
